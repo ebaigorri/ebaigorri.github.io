@@ -1,0 +1,20 @@
+{
+  "negocio": {
+    "nombre": "Carnicería El Mono",
+    "slogan": "Calidad que se nota",
+    "whatsapp": "5493516000000",
+    "logo": "https://tusitio.com/logo-el-mono.png"
+  },
+  "productos": [
+    { "id": 1, "nombre": "Asado de tira", "descripcion": "Corte clásico argentino con hueso, ideal para la parrilla. Jugoso y tierno, de primera calidad. Perfecto para asados familiares.", "categoria": "vacuno", "precio": 320, "foto": "cuadril.jpg", "emoji": "🥩", "activo": 1 },
+    { "id": 2, "nombre": "Bife de chorizo", "descripcion": "El rey de la parrilla argentina. Corte grueso y tierno con grasa marmolada. Mínimo 2 cm de grosor.", "categoria": "vacuno", "precio": 4800, "foto": "https://drive.google.com/file/d/1riYHxQbHcNzbWlny1J8OgxHB6aIR451R/view?usp=sharing", "emoji": "🍖", "activo": 1 },
+    { "id": 3, "nombre": "Nalga", "descripcion": "Corte magro y versátil, ideal para milanesas, bifes o estofados. Muy rendidor.", "categoria": "vacuno", "precio": 2600, "foto": "https://tusitio.com/fotos/nalga.jpg", "emoji": "🥩", "activo": 0 },
+    { "id": 4, "nombre": "Bondiola de cerdo", "descripcion": "Corte jugoso de la paleta del cerdo. Excelente a la parrilla o al horno con especias.", "categoria": "cerdo", "precio": 2400, "foto": "https://tusitio.com/fotos/bondiola.jpg", "emoji": "🐷", "activo": 1 },
+    { "id": 5, "nombre": "Costilla de cerdo", "descripcion": "Costillas para asar o estofar. Carne tierna con hueso, perfecta para caramelizar con salsa barbacoa.", "categoria": "cerdo", "precio": 2200, "foto": "https://tusitio.com/fotos/costilla-cerdo.jpg", "emoji": "🐷", "activo": 1 },
+    { "id": 6, "nombre": "Pechuga de pollo", "descripcion": "Pechuga entera fresca sin hueso. Carne magra ideal para milanesas o a la plancha.", "categoria": "pollo", "precio": 1800, "foto": "https://tusitio.com/fotos/pechuga.jpg", "emoji": "🍗", "activo": 1 },
+    { "id": 7, "nombre": "Muslo y contramuslo", "descripcion": "La parte más jugosa del pollo. Perfecta para el horno, estofados o al disco.", "categoria": "pollo", "precio": 1400, "foto": "https://tusitio.com/fotos/muslo.jpg", "emoji": "🍗", "activo": 1 },
+    { "id": 8, "nombre": "Chorizo criollo", "descripcion": "Chorizo artesanal condimentado a la criolla. Perfecto a la parrilla o en pan. De producción propia.", "categoria": "achuras", "precio": 1600, "foto": "https://tusitio.com/fotos/chorizo.jpg", "emoji": "🔥", "activo": 1 },
+    { "id": 9, "nombre": "Morcilla", "descripcion": "Morcilla casera con especias seleccionadas. Ideal para acompañar el asado.", "categoria": "achuras", "precio": 1400, "foto": "https://tusitio.com/fotos/morcilla.jpg", "emoji": "🔥", "activo": 0 },
+    { "id": 10, "nombre": "Salchicha parrillera", "descripcion": "Salchicha de cerdo y vacuno lista para asar. Suave y jugosa.", "categoria": "embutidos", "precio": 1900, "foto": "https://tusitio.com/fotos/salchicha.jpg", "emoji": "🌭", "activo": 1 }
+  ]
+}
