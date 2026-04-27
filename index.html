@@ -542,22 +542,26 @@ const DATOS_DEMO = {
 /* ══════════════════════════════════════════
    INICIALIZACIÓN
 ══════════════════════════════════════════ */
-async function init() {
-  let data = null;
-  try {
-    const res = await fetch(PRODUCTOS_URL + '?t=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    data = await res.json();
-  } catch(e) {
-    // Sin servidor o JSON no encontrado → usamos datos demo
-    data = DATOS_DEMO;
-  }
-  negocio  = data.negocio || {};
-  // ── Solo productos con activo === 1 ──
-  productos = (data.productos || []).filter(p => p.activo === 1);
+function cargarDatos(data) {
+  negocio   = data.negocio || {};
+  productos = (data.productos || []).filter(function(p){ return p.activo === undefined || p.activo === null || p.activo === 1; });
   aplicarNegocio();
   construirCats();
   renderGrilla();
+}
+
+function init() {
+  fetch(PRODUCTOS_URL + '?t=' + Date.now())
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      cargarDatos(data);
+    })
+    .catch(function() {
+      cargarDatos(DATOS_DEMO);
+    });
 }
 
 /* ══════════════════════════════════════════
