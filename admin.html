@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Carnicería El Mono</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --red:#922B21;--red-light:#F9EBEA;--green:#1B5E20;--green-light:#E8F5E9;
+    --amber:#F57F17;--amber-light:#FFFDE7;
+    --text:#1a1a1a;--muted:#666;--border:#ddd;--bg:#f5f5f5;--white:#fff;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  /* ── LOGIN ── */
+  #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;}
+  .login-card{background:var(--white);border-radius:16px;padding:2rem;width:100%;max-width:360px;box-shadow:0 2px 16px rgba(0,0,0,0.08);}
+  .login-logo{text-align:center;margin-bottom:1.5rem;}
+  .login-logo img{width:80px;height:80px;border-radius:50%;object-fit:cover;}
+  .login-logo-fb{width:80px;height:80px;border-radius:50%;background:#F9EBEA;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto;}
+  .login-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:4px;}
+  .login-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:1.5rem;}
+  .field{margin-bottom:1rem;}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase;}
+  .field input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);}
+  .field input:focus{outline:none;border-color:var(--red);}
+  .login-btn{width:100%;background:var(--red);color:var(--white);border:none;border-radius:8px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+  .login-error{background:#FFEBEE;color:#C62828;border-radius:8px;padding:10px 12px;font-size:13px;margin-top:1rem;display:none;}
+
+  /* ── ADMIN PANEL ── */
+  #admin-screen{display:none;}
+  .topbar{background:var(--red);padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .topbar-title{color:var(--white);font-size:16px;font-weight:700;}
+  .topbar-sub{color:rgba(255,255,255,.65);font-size:11px;}
+  .logout-btn{background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);border-radius:50px;padding:5px 14px;color:var(--white);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+  .container{max-width:640px;margin:0 auto;padding:1.2rem;}
+
+  /* Instrucciones */
+  .info-box{background:var(--amber-light);border:1px solid #FFE082;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:13px;color:#5D4037;line-height:1.6;}
+  .info-box strong{color:var(--amber);display:block;margin-bottom:4px;font-size:12px;letter-spacing:.5px;text-transform:uppercase;}
+
+  /* Nuevo producto */
+  .section-title{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.8rem;}
+  .form-card{background:var(--white);border-radius:12px;padding:1.2rem;margin-bottom:1.5rem;border:1px solid var(--border);}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .form-grid .full{grid-column:1/-1;}
+  .form-card .field input,.form-card .field select,.form-card .field textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);}
+  .form-card .field textarea{resize:none;height:64px;}
+  .form-card .field input:focus,.form-card .field select:focus,.form-card .field textarea:focus{outline:none;border-color:var(--red);}
+  .add-btn{background:var(--green);color:var(--white);border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;}
+
+  /* Lista productos */
+  .prod-item{background:var(--white);border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+  .prod-item.inactivo{opacity:.5;}
+  .prod-thumb{width:52px;height:52px;border-radius:8px;background:#F9EBEA;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;}
+  .prod-thumb img{width:52px;height:52px;object-fit:cover;border-radius:8px;}
+  .prod-info{flex:1;min-width:0;}
+  .prod-name{font-weight:700;font-size:14px;color:var(--text);}
+  .prod-meta{font-size:12px;color:var(--muted);margin-top:2px;}
+  .prod-actions{display:flex;gap:6px;flex-shrink:0;}
+  .btn-toggle{border:none;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+  .btn-toggle.on{background:var(--green-light);color:var(--green);}
+  .btn-toggle.off{background:var(--red-light);color:var(--red);}
+  .btn-edit{background:#EEE;border:none;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;color:#555;font-family:'DM Sans',sans-serif;}
+  .btn-del{background:#FFEBEE;border:none;border-radius:6px;padding:6px 8px;font-size:14px;cursor:pointer;color:#C62828;font-family:'DM Sans',sans-serif;}
+
+  /* Edit modal (inline) */
+  .edit-panel{background:#FFF8E1;border:1.5px solid #FFE082;border-radius:10px;padding:1rem;margin-top:8px;display:none;}
+  .edit-panel.open{display:block;}
+  .edit-panel .form-grid{margin-bottom:.6rem;}
+  .edit-save{background:var(--red);color:var(--white);border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+  .edit-cancel{background:#EEE;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;color:#555;margin-left:6px;font-family:'DM Sans',sans-serif;}
+
+  /* JSON export */
+  .export-card{background:var(--white);border-radius:12px;padding:1.2rem;margin-bottom:2rem;border:1px solid var(--border);}
+  .json-output{background:#1a1a1a;color:#a8ff78;border-radius:8px;padding:1rem;font-size:11px;font-family:monospace;line-height:1.6;max-height:200px;overflow-y:auto;margin-bottom:.8rem;white-space:pre-wrap;word-break:break-all;}
+  .copy-btn{background:var(--green);color:var(--white);border:none;border-radius:6px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+  .dl-btn{background:var(--red);color:var(--white);border:none;border-radius:6px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:8px;}
+
+  .badge{display:inline-block;padding:2px 8px;border-radius:50px;font-size:10px;font-weight:700;margin-left:4px;}
+  .badge.on{background:var(--green-light);color:var(--green);}
+  .badge.off{background:var(--red-light);color:var(--red);}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1A3C34;color:white;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;z-index:999;font-family:'DM Sans',sans-serif;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="" id="login-logo-img" onerror="this.style.display='none';document.getElementById('login-logo-fb').style.display='flex'">
+      <div class="login-logo-fb" id="login-logo-fb">🐒</div>
+    </div>
+    <div class="login-title">Panel de Administración</div>
+    <div class="login-sub">Carnicería El Mono</div>
+    <div class="field">
+      <label>Usuario</label>
+      <input type="text" id="inp-user" placeholder="tu usuario" autocomplete="username">
+    </div>
+    <div class="field">
+      <label>Contraseña</label>
+      <input type="password" id="inp-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Ingresar</button>
+    <div class="login-error" id="login-error">Usuario o contraseña incorrectos.</div>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN PANEL ══════════ -->
+<div id="admin-screen">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">🐒 Panel Admin</div>
+      <div class="topbar-sub">Carnicería El Mono</div>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">Salir</button>
+  </div>
+
+  <div class="container">
+
+    <div class="info-box">
+      <strong>⚙️ Cómo funciona</strong>
+      Editá los productos acá abajo. Cuando termines, bajá al final, copiá o descargá el nuevo <code>productos.json</code> y reemplazalo en tu repositorio de GitHub. Los cambios se ven en la tienda automáticamente.
+    </div>
+
+    <!-- Nuevo producto -->
+    <div class="section-title">+ Agregar producto</div>
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="field full">
+          <label>Nombre</label>
+          <input type="text" id="np-nombre" placeholder="Ej: Asado de tira">
+        </div>
+        <div class="field full">
+          <label>Descripción</label>
+          <textarea id="np-desc" placeholder="Descripción que verá el cliente..."></textarea>
+        </div>
+        <div class="field">
+          <label>Categoría</label>
+          <select id="np-cat">
+            <option value="vacuno">🐄 Vacuno</option>
+            <option value="cerdo">🐷 Cerdo</option>
+            <option value="pollo">🍗 Pollo</option>
+            <option value="achuras">🔥 Achuras</option>
+            <option value="embutidos">🌭 Embutidos</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Precio $/kg</label>
+          <input type="number" id="np-precio" placeholder="0" min="0">
+        </div>
+        <div class="field full">
+          <label>URL de la foto</label>
+          <input type="url" id="np-foto" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Emoji (opcional)</label>
+          <input type="text" id="np-emoji" placeholder="🥩" maxlength="4">
+        </div>
+        <div class="field">
+          <label>Activo</label>
+          <select id="np-activo">
+            <option value="1">✅ Visible en tienda</option>
+            <option value="0">⛔ Oculto</option>
+          </select>
+        </div>
+      </div>
+      <button class="add-btn" onclick="agregarProducto()">+ Agregar a la lista</button>
+    </div>
+
+    <!-- Lista productos -->
+    <div class="section-title">Productos <span id="prod-count"></span></div>
+    <div id="lista-productos"></div>
+
+    <!-- Export JSON -->
+    <div class="section-title" style="margin-top:1.5rem;">Exportar productos.json</div>
+    <div class="export-card">
+      <div class="json-output" id="json-preview"></div>
+      <button class="copy-btn" onclick="copiarJSON()">Copiar JSON</button>
+      <button class="dl-btn" onclick="descargarJSON()">⬇ Descargar</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══ CONFIGURACIÓN ══
+// Cambiá esta URL por la ruta real a tu admin.json en GitHub Pages:
+// Ejemplo: 'https://tuusuario.github.io/carniceria/admin.json'
+const ADMIN_JSON_URL = 'admin.json';
+const PRODUCTOS_JSON_URL = 'productos.json';
+
+const CAT_EMOJI = {vacuno:'🐄',cerdo:'🐷',pollo:'🍗',achuras:'🔥',embutidos:'🌭'};
+const CAT_LABEL = {vacuno:'Vacuno',cerdo:'Cerdo',pollo:'Pollo',achuras:'Achuras',embutidos:'Embutidos'};
+
+let credenciales = null;
+let productos = [];
+let negocio = {};
+let nextId = 100;
+let sessionActive = false;
+
+// ── SHA-256 nativa del browser ──
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// ── INIT ──
+async function init() {
+  try {
+    const res = await fetch(ADMIN_JSON_URL + '?t=' + Date.now());
+    credenciales = await res.json();
+    if (credenciales.negocio && credenciales.negocio.logo) {
+      document.getElementById('login-logo-img').src = credenciales.negocio.logo;
+    }
+  } catch(e) {
+    // Usa credenciales de demo si no hay archivo
+    credenciales = {
+      usuario: 'elmono',
+      password_hash: '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'
+    };
+    showToast('⚠ admin.json no encontrado — usando demo');
+  }
+}
+
+// ── LOGIN ──
+async function doLogin() {
+  const user = document.getElementById('inp-user').value.trim();
+  const pass = document.getElementById('inp-pass').value;
+  const errEl = document.getElementById('login-error');
+  if (!user || !pass) { errEl.style.display='block'; errEl.textContent='Completá usuario y contraseña.'; return; }
+  const hash = await sha256(pass);
+  if (user === credenciales.usuario && hash === credenciales.password_hash) {
+    errEl.style.display='none';
+    sessionActive = true;
+    await cargarProductos();
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+  } else {
+    errEl.style.display = 'block';
+    errEl.textContent = 'Usuario o contraseña incorrectos.';
+  }
+}
+
+function doLogout() {
+  sessionActive = false;
+  document.getElementById('admin-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('inp-pass').value = '';
+}
+
+// ── CARGAR PRODUCTOS ──
+async function cargarProductos() {
+  try {
+    const res = await fetch(PRODUCTOS_JSON_URL + '?t=' + Date.now());
+    const data = await res.json();
+    negocio = data.negocio || {};
+    productos = data.productos || [];
+    nextId = Math.max(...productos.map(p=>p.id), 0) + 1;
+  } catch(e) {
+    productos = [];
+    showToast('⚠ productos.json no encontrado — lista vacía');
+  }
+  renderLista();
+  renderJSON();
+}
+
+// ── RENDER LISTA ──
+function renderLista() {
+  const el = document.getElementById('lista-productos');
+  document.getElementById('prod-count').textContent =
+    `(${productos.filter(p=>p.activo===1).length} activos / ${productos.length} total)`;
+  if (!productos.length) { el.innerHTML = '<p style="color:#999;font-size:13px;padding:.5rem 0;">No hay productos cargados aún.</p>'; return; }
+  el.innerHTML = productos.map((p,i) => `
+    <div class="prod-item ${p.activo===1?'':'inactivo'}" id="item-${p.id}">
+      <div class="prod-thumb">
+        ${p.foto ? `<img src="${p.foto}" onerror="this.parentElement.innerHTML='${p.emoji||CAT_EMOJI[p.categoria]||'🥩'}'">` : (p.emoji||CAT_EMOJI[p.categoria]||'🥩')}
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">${p.nombre} <span class="badge ${p.activo===1?'on':'off'}">${p.activo===1?'visible':'oculto'}</span></div>
+        <div class="prod-meta">${CAT_LABEL[p.categoria]||p.categoria} · $${(p.precio||0).toLocaleString()}/kg</div>
+      </div>
+      <div class="prod-actions">
+        <button class="btn-toggle ${p.activo===1?'on':'off'}" onclick="toggleActivo(${p.id})">${p.activo===1?'✅ Activo':'⛔ Oculto'}</button>
+        <button class="btn-edit" onclick="toggleEdit(${p.id})">✏</button>
+        <button class="btn-del" onclick="eliminar(${p.id})">🗑</button>
+      </div>
+    </div>
+    <div class="edit-panel" id="edit-${p.id}">
+      <div class="form-grid">
+        <div class="field full"><label>Nombre</label><input type="text" id="e-nombre-${p.id}" value="${escHtml(p.nombre)}"></div>
+        <div class="field full"><label>Descripción</label><textarea id="e-desc-${p.id}">${escHtml(p.descripcion||'')}</textarea></div>
+        <div class="field"><label>Categoría</label>
+          <select id="e-cat-${p.id}">
+            ${['vacuno','cerdo','pollo','achuras','embutidos'].map(c=>`<option value="${c}" ${p.categoria===c?'selected':''}>${CAT_EMOJI[c]} ${CAT_LABEL[c]}</option>`).join('')}
+          </select>
+        </div>
+        <div class="field"><label>Precio $/kg</label><input type="number" id="e-precio-${p.id}" value="${p.precio||0}"></div>
+        <div class="field full"><label>URL foto</label><input type="url" id="e-foto-${p.id}" value="${escHtml(p.foto||'')}"></div>
+        <div class="field"><label>Emoji</label><input type="text" id="e-emoji-${p.id}" value="${p.emoji||''}" maxlength="4"></div>
+        <div class="field"><label>Estado</label>
+          <select id="e-activo-${p.id}">
+            <option value="1" ${p.activo===1?'selected':''}>✅ Visible</option>
+            <option value="0" ${p.activo!==1?'selected':''}>⛔ Oculto</option>
+          </select>
+        </div>
+      </div>
+      <button class="edit-save" onclick="guardarEdit(${p.id})">Guardar cambios</button>
+      <button class="edit-cancel" onclick="toggleEdit(${p.id})">Cancelar</button>
+    </div>
+  `).join('');
+}
+
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+function toggleActivo(id) {
+  const p = productos.find(x=>x.id===id);
+  if (!p) return;
+  p.activo = p.activo===1 ? 0 : 1;
+  renderLista();
+  renderJSON();
+  showToast(p.activo===1 ? `✅ ${p.nombre} activado` : `⛔ ${p.nombre} ocultado`);
+}
+
+function toggleEdit(id) {
+  const el = document.getElementById('edit-'+id);
+  el.classList.toggle('open');
+}
+
+function guardarEdit(id) {
+  const p = productos.find(x=>x.id===id);
+  if (!p) return;
+  p.nombre     = document.getElementById('e-nombre-'+id).value.trim();
+  p.descripcion= document.getElementById('e-desc-'+id).value.trim();
+  p.categoria  = document.getElementById('e-cat-'+id).value;
+  p.precio     = parseInt(document.getElementById('e-precio-'+id).value)||0;
+  p.foto       = document.getElementById('e-foto-'+id).value.trim();
+  p.emoji      = document.getElementById('e-emoji-'+id).value.trim() || CAT_EMOJI[p.categoria];
+  p.activo     = parseInt(document.getElementById('e-activo-'+id).value);
+  renderLista();
+  renderJSON();
+  showToast('✓ Cambios guardados');
+}
+
+function eliminar(id) {
+  const p = productos.find(x=>x.id===id);
+  if (!p) return;
+  if (!confirm(`¿Eliminar "${p.nombre}"?`)) return;
+  productos = productos.filter(x=>x.id!==id);
+  renderLista();
+  renderJSON();
+  showToast('🗑 Producto eliminado');
+}
+
+function agregarProducto() {
+  const nombre = document.getElementById('np-nombre').value.trim();
+  const desc   = document.getElementById('np-desc').value.trim();
+  const cat    = document.getElementById('np-cat').value;
+  const precio = parseInt(document.getElementById('np-precio').value)||0;
+  const foto   = document.getElementById('np-foto').value.trim();
+  const emoji  = document.getElementById('np-emoji').value.trim() || CAT_EMOJI[cat];
+  const activo = parseInt(document.getElementById('np-activo').value);
+  if (!nombre) { showToast('⚠ Ingresá el nombre del producto'); return; }
+  productos.push({ id: nextId++, nombre, descripcion: desc, categoria: cat, precio, foto, emoji, activo });
+  document.getElementById('np-nombre').value='';
+  document.getElementById('np-desc').value='';
+  document.getElementById('np-precio').value='';
+  document.getElementById('np-foto').value='';
+  document.getElementById('np-emoji').value='';
+  renderLista();
+  renderJSON();
+  showToast('✓ Producto agregado');
+}
+
+// ── JSON EXPORT ──
+function buildJSON() {
+  return JSON.stringify({ negocio, productos }, null, 2);
+}
+
+function renderJSON() {
+  document.getElementById('json-preview').textContent = buildJSON();
+}
+
+function copiarJSON() {
+  navigator.clipboard.writeText(buildJSON()).then(()=>showToast('✓ JSON copiado'));
+}
+
+function descargarJSON() {
+  const blob = new Blob([buildJSON()], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'productos.json';
+  a.click();
+  showToast('⬇ Descargando productos.json');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+init();
+</script>
+</body>
+</html>
