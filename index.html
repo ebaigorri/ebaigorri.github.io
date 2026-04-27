@@ -514,26 +514,50 @@ let prodActual = null;
 let qtyActual  = 0.5;
 
 /* ══════════════════════════════════════════
+   DATOS DEMO (fallback cuando no hay servidor)
+══════════════════════════════════════════ */
+const DATOS_DEMO = {
+  negocio: {
+    nombre: "Carnicería El Mono",
+    slogan: "Calidad que se nota",
+    whatsapp: "5493516000000",
+    logo: ""
+  },
+  productos: [
+    { id:1,  nombre:"Asado de tira",       descripcion:"Corte clásico argentino con hueso, ideal para la parrilla. Jugoso y tierno, de primera calidad. Perfecto para asados familiares.", categoria:"vacuno",    precio:3200, foto:"", emoji:"🥩", activo:1 },
+    { id:2,  nombre:"Bife de chorizo",      descripcion:"El rey de la parrilla argentina. Corte grueso y tierno con grasa marmolada. Mínimo 2 cm de grosor.",                              categoria:"vacuno",    precio:4800, foto:"", emoji:"🍖", activo:1 },
+    { id:3,  nombre:"Lomo",                 descripcion:"El corte más fino y tierno del bovino. Ideal a la plancha o al horno. Sin grasa, de textura suave y sabor delicado.",              categoria:"vacuno",    precio:6200, foto:"", emoji:"🥩", activo:1 },
+    { id:4,  nombre:"Nalga",                descripcion:"Corte magro y versátil, ideal para milanesas, bifes o estofados. Muy rendidor y económico para toda la familia.",                  categoria:"vacuno",    precio:2600, foto:"", emoji:"🥩", activo:1 },
+    { id:5,  nombre:"Bondiola de cerdo",    descripcion:"Corte jugoso y sabroso de la paleta del cerdo. Excelente marinado a la parrilla o al horno con especias. Muy tierno.",            categoria:"cerdo",     precio:2400, foto:"", emoji:"🐷", activo:1 },
+    { id:6,  nombre:"Costilla de cerdo",    descripcion:"Costillas ideales para asar o estofar. Carne tierna con hueso, perfecta para caramelizar con salsa barbacoa.",                    categoria:"cerdo",     precio:2200, foto:"", emoji:"🐷", activo:1 },
+    { id:7,  nombre:"Pechuga de pollo",     descripcion:"Pechuga entera fresca, sin hueso. Carne magra y proteica, ideal para dietas saludables, milanesas o a la plancha.",              categoria:"pollo",     precio:1800, foto:"", emoji:"🍗", activo:1 },
+    { id:8,  nombre:"Muslo y contramuslo",  descripcion:"La parte más jugosa del pollo. Perfecta para el horno, estofados o al disco. Mucho sabor y muy rendidor.",                       categoria:"pollo",     precio:1400, foto:"", emoji:"🍗", activo:1 },
+    { id:9,  nombre:"Chorizo criollo",      descripcion:"Chorizo artesanal de cerdo condimentado a la manera criolla. Perfecto a la parrilla o en pan. De producción propia.",             categoria:"achuras",   precio:1600, foto:"", emoji:"🔥", activo:1 },
+    { id:10, nombre:"Morcilla",             descripcion:"Morcilla casera con especias seleccionadas. Ideal para acompañar el asado. Elaborada de forma artesanal.",                        categoria:"achuras",   precio:1400, foto:"", emoji:"🔥", activo:1 },
+    { id:11, nombre:"Salchicha parrillera", descripcion:"Salchicha de cerdo y vacuno lista para asar. Suave y jugosa, ideal para niños y grandes. Perfecta a la parrilla.",                categoria:"embutidos", precio:1900, foto:"", emoji:"🌭", activo:1 },
+    { id:12, nombre:"Salame casero",        descripcion:"Salame curado artesanalmente con especias naturales. Cortado grueso, ideal para picadas y reuniones.",                            categoria:"embutidos", precio:3400, foto:"", emoji:"🌭", activo:1 }
+  ]
+};
+
+/* ══════════════════════════════════════════
    INICIALIZACIÓN
 ══════════════════════════════════════════ */
 async function init() {
+  let data = null;
   try {
     const res = await fetch(PRODUCTOS_URL + '?t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    negocio  = data.negocio || {};
-    // ── Solo productos con activo === 1 ──
-    productos = (data.productos || []).filter(p => p.activo === 1);
-    aplicarNegocio();
-    construirCats();
-    renderGrilla();
+    data = await res.json();
   } catch(e) {
-    document.getElementById('productos-wrap').innerHTML =
-      `<div class="loading-wrap" style="color:#C62828;">
-        <span style="font-size:36px;">⚠️</span>
-        <span>No se pudo cargar el menú.<br>Revisá tu conexión.</span>
-       </div>`;
+    // Sin servidor o JSON no encontrado → usamos datos demo
+    data = DATOS_DEMO;
   }
+  negocio  = data.negocio || {};
+  // ── Solo productos con activo === 1 ──
+  productos = (data.productos || []).filter(p => p.activo === 1);
+  aplicarNegocio();
+  construirCats();
+  renderGrilla();
 }
 
 /* ══════════════════════════════════════════
