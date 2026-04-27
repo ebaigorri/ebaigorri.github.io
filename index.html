@@ -551,7 +551,7 @@ function cargarDatos(data) {
 }
 
 function init() {
-  fetch(PRODUCTOS_URL)
+  fetch(PRODUCTOS_URL, { cache: 'no-store' })
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
@@ -620,7 +620,7 @@ function filtrarCat(el, cat) {
    GRILLA
 ══════════════════════════════════════════ */
 function fotoEl(p, wh) {
-  if (p.foto) {
+  if (p.foto && p.foto.trim() !== '') {
     const em = (p.emoji || CAT_EMOJI[p.categoria] || '🥩').replace(/'/g,"\\'");
     return `<img src="${p.foto}" alt="${escH(p.nombre)}"
               onerror="this.parentElement.innerHTML='<span style=font-size:${Math.round(wh*.44)}px>${em}</span>'">`;
@@ -668,7 +668,7 @@ function goDetalle(id) {
 
   const em = prodActual.emoji || CAT_EMOJI[prodActual.categoria] || '🥩';
   const fotoWrap = document.getElementById('det-foto');
-  fotoWrap.innerHTML = prodActual.foto
+  fotoWrap.innerHTML = (prodActual.foto && prodActual.foto.trim() !== '')
     ? `<img src="${prodActual.foto}" alt="${escH(prodActual.nombre)}"
          onerror="this.parentElement.innerHTML='<span style=font-size:96px>${em}</span>'">`
     : `<span style="font-size:96px;">${em}</span>`;
