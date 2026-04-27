@@ -544,12 +544,7 @@ const DATOS_DEMO = {
 ══════════════════════════════════════════ */
 function cargarDatos(data) {
   negocio   = data.negocio || {};
-  var todos = data.productos || [];
-  console.log('JSON cargado. Total productos:', todos.length);
-  console.log('Primer producto activo valor:', todos[0] ? todos[0].activo : 'sin productos');
-  console.log('Tipo del campo activo:', todos[0] ? typeof todos[0].activo : 'N/A');
-  productos = todos.filter(function(p){ return p.activo == 1; });
-  console.log('Productos filtrados activo==1:', productos.length);
+  productos = (data.productos || []).filter(function(p){ return p.activo == 1; });
   aplicarNegocio();
   construirCats();
   renderGrilla();
@@ -562,9 +557,14 @@ function init() {
       return res.json();
     })
     .then(function(data) {
-      cargarDatos(data);
+      try {
+        cargarDatos(data);
+      } catch(e) {
+        console.error('Error procesando datos:', e);
+      }
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.warn('Fetch falló, usando demo:', err);
       cargarDatos(DATOS_DEMO);
     });
 }
