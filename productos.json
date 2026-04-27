@@ -7,7 +7,7 @@
   },
   "productos": [
     { "id": 1, "nombre": "Puchero Caracu", "descripcion": "Ideal para caldos con mucho sabor.", "categoria": "vacuno", "precio": 12000, "foto": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d", "emoji": "🍲", "activo": 1 },
-    { "id": 2, "nombre": "Puchero Agujilla", "descripcion": "Perfecto para guisos y hervidos.", "categoria": "vacuno", "precio": 10000, "foto": "https://images.unsplash.com/photo-1559847844-d721426d6edc", "emoji": "🍲", "activo": 0 },
+    { "id": 2, "nombre": "Puchero Agujilla", "descripcion": "Perfecto para guisos y hervidos.", "categoria": "vacuno", "precio": 10000, "foto": "https://images.unsplash.com/photo-1559847844-d721426d6edc", "emoji": "🍲", "activo": 1 },
     { "id": 3, "nombre": "Aguja Parrillera", "descripcion": "Ideal para parrilla.", "categoria": "vacuno", "precio": 16000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🔥", "activo": 1 },
     { "id": 4, "nombre": "Marucha", "descripcion": "Corte sabroso y rendidor.", "categoria": "vacuno", "precio": 16000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🥩", "activo": 1 },
     { "id": 5, "nombre": "Falda para Asar", "descripcion": "Clásico para parrilla.", "categoria": "vacuno", "precio": 16000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🍖", "activo": 1 },
