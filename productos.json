@@ -6,29 +6,225 @@
     "logo": "https://tusitio.com/logo-el-mono.png"
   },
   "productos": [
-    { "id": 1, "nombre": "Puchero Caracu", "descripcion": "Ideal para caldos con mucho sabor.", "categoria": "vacuno", "precio": 12000, "foto": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d", "emoji": "🍲", "activo": 1 },
-    { "id": 2, "nombre": "Puchero Agujilla", "descripcion": "Perfecto para guisos y hervidos.", "categoria": "vacuno", "precio": 10000, "foto": "https://images.unsplash.com/photo-1559847844-d721426d6edc", "emoji": "🍲", "activo": 1 },
-    { "id": 3, "nombre": "Aguja Parrillera", "descripcion": "Ideal para parrilla.", "categoria": "vacuno", "precio": 16000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🔥", "activo": 1 },
-    { "id": 4, "nombre": "Marucha", "descripcion": "Corte sabroso y rendidor.", "categoria": "vacuno", "precio": 16000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🥩", "activo": 1 },
-    { "id": 5, "nombre": "Falda para Asar", "descripcion": "Clásico para parrilla.", "categoria": "vacuno", "precio": 16000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🍖", "activo": 1 },
-    { "id": 6, "nombre": "Molida", "descripcion": "Ideal para hamburguesas.", "categoria": "vacuno", "precio": 8000, "foto": "https://images.unsplash.com/photo-1550547660-d9450f859349", "emoji": "🍔", "activo": 1 },
-    { "id": 7, "nombre": "Nalga", "descripcion": "Perfecta para milanesas.", "categoria": "vacuno", "precio": 24000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🥩", "activo": 1 },
-    { "id": 8, "nombre": "Cuadril", "descripcion": "Corte premium.", "categoria": "vacuno", "precio": 23500, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🥩", "activo": 1 },
-    { "id": 9, "nombre": "Vacío", "descripcion": "El rey de la parrilla.", "categoria": "vacuno", "precio": 22500, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🔥", "activo": 1 },
-    { "id": 10, "nombre": "Entraña", "descripcion": "Muy sabrosa y jugosa.", "categoria": "vacuno", "precio": 24000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🔥", "activo": 1 },
-    { "id": 11, "nombre": "Lomo", "descripcion": "El más tierno.", "categoria": "vacuno", "precio": 24000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🥩", "activo": 1 },
-    { "id": 12, "nombre": "Matambre de Vaca", "descripcion": "Ideal relleno o parrilla.", "categoria": "vacuno", "precio": 24000, "foto": "https://images.unsplash.com/photo-1558030006-450675393462", "emoji": "🍖", "activo": 1 },
-
-    { "id": 20, "nombre": "Pechito de Cerdo", "descripcion": "Costillas sabrosas.", "categoria": "cerdo", "precio": 12000, "foto": "https://images.unsplash.com/photo-1604908554027-ec6f1e2a8d4c", "emoji": "🐖", "activo": 1 },
-    { "id": 21, "nombre": "Carré", "descripcion": "Magro y tierno.", "categoria": "cerdo", "precio": 12000, "foto": "https://images.unsplash.com/photo-1604908554027-ec6f1e2a8d4c", "emoji": "🐖", "activo": 1 },
-    { "id": 22, "nombre": "Chuleta", "descripcion": "Para plancha o parrilla.", "categoria": "cerdo", "precio": 8000, "foto": "https://images.unsplash.com/photo-1604908554027-ec6f1e2a8d4c", "emoji": "🍖", "activo": 1 },
-
-    { "id": 30, "nombre": "Pechuga", "descripcion": "Carne magra.", "categoria": "pollo", "precio": 10500, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🍗", "activo": 1 },
-    { "id": 31, "nombre": "Pata Muslo", "descripcion": "Jugoso y económico.", "categoria": "pollo", "precio": 4800, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🍗", "activo": 1 },
-    { "id": 32, "nombre": "Alita", "descripcion": "Ideal para fritar.", "categoria": "pollo", "precio": 3500, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🍗", "activo": 1 },
-    { "id": 33, "nombre": "Pollo Entero", "descripcion": "Para toda la familia.", "categoria": "pollo", "precio": 6500, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🐔", "activo": 1 },
-
-    { "id": 40, "nombre": "Milanesa de Pollo", "descripcion": "Lista para cocinar.", "categoria": "preparado", "precio": 8000, "foto": "https://images.unsplash.com/photo-1604908177522-0409c3bfa9b5", "emoji": "🍽️", "activo": 1 },
-    { "id": 41, "nombre": "Milanesa de Carne", "descripcion": "Tierna y lista.", "categoria": "preparado", "precio": 13000, "foto": "https://images.unsplash.com/photo-1604908177522-0409c3bfa9b5", "emoji": "🍽️", "activo": 1 }
+    {
+      "id": 1,
+      "nombre": "Puchero Caracu",
+      "descripcion": "Ideal para caldos con mucho sabor.",
+      "categoria": "vacuno",
+      "precio": 12000,
+      "foto": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d",
+      "emoji": "🍲",
+      "activo": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Puchero Agujilla",
+      "descripcion": "Perfecto para guisos y hervidos.",
+      "categoria": "vacuno",
+      "precio": 10000,
+      "foto": "https://images.unsplash.com/photo-1559847844-d721426d6edc",
+      "emoji": "🍲",
+      "activo": 0
+    },
+    {
+      "id": 3,
+      "nombre": "Aguja Parrillera",
+      "descripcion": "Ideal para parrilla.",
+      "categoria": "vacuno",
+      "precio": 16000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🔥",
+      "activo": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Marucha",
+      "descripcion": "Corte sabroso y rendidor.",
+      "categoria": "vacuno",
+      "precio": 16000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🥩",
+      "activo": 1
+    },
+    {
+      "id": 5,
+      "nombre": "Falda para Asar",
+      "descripcion": "Clásico para parrilla.",
+      "categoria": "vacuno",
+      "precio": 16000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🍖",
+      "activo": 1
+    },
+    {
+      "id": 6,
+      "nombre": "Molida",
+      "descripcion": "Ideal para hamburguesas.",
+      "categoria": "vacuno",
+      "precio": 8000,
+      "foto": "https://images.unsplash.com/photo-1550547660-d9450f859349",
+      "emoji": "🍔",
+      "activo": 1
+    },
+    {
+      "id": 7,
+      "nombre": "Nalga",
+      "descripcion": "Perfecta para milanesas.",
+      "categoria": "vacuno",
+      "precio": 24000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🥩",
+      "activo": 1
+    },
+    {
+      "id": 8,
+      "nombre": "Cuadril",
+      "descripcion": "Corte premium.",
+      "categoria": "vacuno",
+      "precio": 23500,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🥩",
+      "activo": 1
+    },
+    {
+      "id": 9,
+      "nombre": "Vacío",
+      "descripcion": "El rey de la parrilla.",
+      "categoria": "vacuno",
+      "precio": 22500,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🔥",
+      "activo": 1
+    },
+    {
+      "id": 10,
+      "nombre": "Entraña",
+      "descripcion": "Muy sabrosa y jugosa.",
+      "categoria": "vacuno",
+      "precio": 24000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🔥",
+      "activo": 1
+    },
+    {
+      "id": 11,
+      "nombre": "Lomo",
+      "descripcion": "El más tierno.",
+      "categoria": "vacuno",
+      "precio": 24000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🥩",
+      "activo": 1
+    },
+    {
+      "id": 12,
+      "nombre": "Matambre de Vaca",
+      "descripcion": "Ideal relleno o parrilla.",
+      "categoria": "vacuno",
+      "precio": 24000,
+      "foto": "https://images.unsplash.com/photo-1558030006-450675393462",
+      "emoji": "🍖",
+      "activo": 1
+    },
+    {
+      "id": 20,
+      "nombre": "Pechito de Cerdo",
+      "descripcion": "Costillas sabrosas.",
+      "categoria": "cerdo",
+      "precio": 12000,
+      "foto": "https://images.unsplash.com/photo-1604908554027-ec6f1e2a8d4c",
+      "emoji": "🐖",
+      "activo": 1
+    },
+    {
+      "id": 21,
+      "nombre": "Carré",
+      "descripcion": "Magro y tierno.",
+      "categoria": "cerdo",
+      "precio": 12000,
+      "foto": "https://images.unsplash.com/photo-1604908554027-ec6f1e2a8d4c",
+      "emoji": "🐖",
+      "activo": 1
+    },
+    {
+      "id": 22,
+      "nombre": "Chuleta",
+      "descripcion": "Para plancha o parrilla.",
+      "categoria": "cerdo",
+      "precio": 8000,
+      "foto": "https://images.unsplash.com/photo-1604908554027-ec6f1e2a8d4c",
+      "emoji": "🍖",
+      "activo": 1
+    },
+    {
+      "id": 30,
+      "nombre": "Pechuga",
+      "descripcion": "Carne magra.",
+      "categoria": "pollo",
+      "precio": 10500,
+      "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791",
+      "emoji": "🍗",
+      "activo": 1
+    },
+    {
+      "id": 31,
+      "nombre": "Pata Muslo",
+      "descripcion": "Jugoso y económico.",
+      "categoria": "pollo",
+      "precio": 4800,
+      "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791",
+      "emoji": "🍗",
+      "activo": 1
+    },
+    {
+      "id": 32,
+      "nombre": "Alita",
+      "descripcion": "Ideal para fritar.",
+      "categoria": "pollo",
+      "precio": 3500,
+      "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791",
+      "emoji": "🍗",
+      "activo": 1
+    },
+    {
+      "id": 33,
+      "nombre": "Pollo Entero",
+      "descripcion": "Para toda la familia.",
+      "categoria": "pollo",
+      "precio": 6500,
+      "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791",
+      "emoji": "🐔",
+      "activo": 1
+    },
+    {
+      "id": 40,
+      "nombre": "Milanesa de Pollo",
+      "descripcion": "Lista para cocinar.",
+      "categoria": "preparado",
+      "precio": 8000,
+      "foto": "https://images.unsplash.com/photo-1604908177522-0409c3bfa9b5",
+      "emoji": "🍽️",
+      "activo": 1
+    },
+    {
+      "id": 41,
+      "nombre": "Milanesa de Carne",
+      "descripcion": "Tierna y lista.",
+      "categoria": "preparado",
+      "precio": 13000,
+      "foto": "https://images.unsplash.com/photo-1604908177522-0409c3bfa9b5",
+      "emoji": "🍽️",
+      "activo": 1
+    },
+    {
+      "id": 42,
+      "nombre": "Milanesa de Pollo Oferta_2Kg",
+      "descripcion": "Milanesa de Pollo x 2Kg",
+      "categoria": "pollo",
+      "precio": 15,
+      "foto": "",
+      "emoji": "🍗",
+      "activo": 1
+    }
   ]
 }
