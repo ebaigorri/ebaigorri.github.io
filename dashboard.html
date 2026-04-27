@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>📊 Dashboard</h1>
+
+<canvas id="ventas"></canvas>
+
+<script>
+const pedidos=JSON.parse(localStorage.getItem('pedidos'))||[];
+
+const ventas={};
+
+pedidos.forEach(p=>{
+  const dia=p.fecha.split('T')[0];
+  ventas[dia]=(ventas[dia]||0)+p.total;
+});
+
+new Chart(document.getElementById('ventas'),{
+  type:'bar',
+  data:{
+    labels:Object.keys(ventas),
+    datasets:[{label:'Ventas',data:Object.values(ventas)}]
+  }
+});
+</script>
+
+</body>
+</html>

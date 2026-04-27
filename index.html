@@ -1,398 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carnicería</title>
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0;}
-  :root{--red:#C1392B;--red-dark:#922B21;--red-light:#F9EBEA;--cream:#FDF6EC;--brown:#784212;--brown-light:#EDBB99;--text:#1A0A00;--muted:#7D4C2A;--white:#fff;--border:rgba(120,66,18,0.15);}
-  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);max-width:420px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
-  .screen{display:none;flex-direction:column;min-height:100vh;}
-  .screen.active{display:flex;}
-
-  .header{background:var(--red-dark);padding:0.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-  .header-logo{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.3);}
-  .header-titles{flex:1;margin-left:10px;}
-  .header-title{font-family:'Playfair Display',serif;font-size:18px;color:white;font-weight:900;line-height:1.1;}
-  .header-sub{font-size:9px;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase;}
-  .cart-btn{background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);border-radius:50px;padding:6px 14px;color:white;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;}
-  .cart-count{background:var(--red);color:white;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-
-  .hero{background:linear-gradient(135deg,#1B5E20 0%,#2E7D32 50%,#C1392B 100%);padding:1.2rem 1.2rem 2rem;display:flex;align-items:center;gap:14px;}
-  .hero-logo{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.4);flex-shrink:0;}
-  .hero-tag{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:4px;}
-  .hero-h{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:900;line-height:1.15;margin-bottom:4px;}
-  .hero-p{font-size:12px;color:rgba(255,255,255,0.75);line-height:1.4;font-style:italic;}
-
-  /* JSON status banner */
-  .json-banner{background:#E8F5E9;border-bottom:1px solid #A5D6A7;padding:8px 1.2rem;display:flex;align-items:center;gap:8px;font-size:12px;color:#2E7D32;font-weight:600;}
-  .json-banner.error{background:#FFEBEE;border-color:#FFCDD2;color:#C62828;}
-  .json-url{flex:1;font-size:11px;color:#555;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-
-  .cat-nav{display:flex;gap:8px;padding:0.9rem 1.2rem 0.5rem;overflow-x:auto;scrollbar-width:none;background:white;border-bottom:1px solid var(--border);}
-  .cat-nav::-webkit-scrollbar{display:none;}
-  .cat-pill{flex-shrink:0;background:var(--cream);border:1.5px solid var(--border);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;}
-  .cat-pill.active{background:var(--red-dark);border-color:var(--red-dark);color:white;}
-
-  .section-label{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);font-weight:600;padding:1.2rem 1.2rem 0.6rem;}
-  .products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 1.2rem 1.5rem;}
-  .prod-card{background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform 0.15s;}
-  .prod-card:active{transform:scale(0.97);}
-  .prod-img-wrap{width:100%;height:110px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:50px;overflow:hidden;}
-  .prod-img-wrap img{width:100%;height:110px;object-fit:cover;}
-  .prod-info{padding:10px 10px 12px;}
-  .prod-name{font-weight:600;font-size:13px;color:var(--text);line-height:1.3;margin-bottom:3px;}
-  .prod-desc{font-size:11px;color:var(--muted);line-height:1.4;margin-bottom:8px;}
-  .prod-price{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--red-dark);}
-  .prod-unit{font-size:10px;font-family:'DM Sans',sans-serif;color:var(--muted);font-weight:400;}
-
-  .detail-header{background:var(--red-dark);padding:1rem 1.2rem;display:flex;align-items:center;gap:12px;}
-  .back-btn{background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;width:36px;height:36px;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Sans',sans-serif;}
-  .detail-img-wrap{width:100%;height:220px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:90px;overflow:hidden;}
-  .detail-img-wrap img{width:100%;height:220px;object-fit:cover;}
-  .detail-body{padding:1.5rem 1.2rem;flex:1;}
-  .detail-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px;}
-  .detail-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--text);line-height:1.15;margin-bottom:10px;}
-  .detail-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
-  .detail-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:1.5rem;}
-  .detail-price{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--red-dark);}
-  .qty-section label{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px;}
-  .qty-control{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:50px;overflow:hidden;width:fit-content;margin-bottom:1.5rem;}
-  .qty-btn{background:var(--cream);border:none;width:44px;height:44px;font-size:22px;color:var(--red-dark);font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;}
-  .qty-val{font-size:16px;font-weight:700;color:var(--text);width:70px;text-align:center;padding:10px 0;}
-  .add-btn{width:100%;background:var(--red-dark);color:white;border:none;border-radius:50px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
-  .continue-link{display:block;text-align:center;margin-top:14px;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
-
-  .cart-list{padding:1rem 1.2rem;flex:1;}
-  .cart-item{display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:12px;margin-bottom:10px;border:1px solid var(--border);}
-  .cart-thumb{width:44px;height:44px;border-radius:10px;background:var(--red-light);display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;flex-shrink:0;}
-  .cart-thumb img{width:44px;height:44px;object-fit:cover;border-radius:10px;}
-  .cart-item-info{flex:1;}
-  .cart-item-name{font-weight:600;font-size:14px;color:var(--text);}
-  .cart-item-detail{font-size:12px;color:var(--muted);margin-top:2px;}
-  .cart-item-remove{background:var(--red-light);border:none;border-radius:50%;width:28px;height:28px;color:var(--red-dark);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;}
-  .cart-footer{background:white;border-top:1px solid var(--border);padding:1.2rem;}
-  .cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
-  .cart-total-label{font-size:13px;color:var(--muted);font-weight:500;}
-  .cart-total-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--red-dark);}
-  .wa-btn{width:100%;background:#25D366;color:white;border:none;border-radius:50px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;}
-  .keep-shopping{display:block;text-align:center;margin-top:12px;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
-
-  .loading{text-align:center;padding:3rem 1rem;color:var(--muted);}
-  .loading-spinner{font-size:36px;display:block;margin-bottom:12px;}
-
-  .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1A3C34;color:white;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;z-index:999;font-family:'DM Sans',sans-serif;}
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+body{font-family:Arial;margin:0;background:#f5f5f5;}
+header{background:#b71c1c;color:white;padding:10px;text-align:center;}
+#banner{display:none;color:white;padding:10px;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;padding:10px;}
+.card{background:white;padding:10px;border-radius:10px;}
+img{width:100%;height:150px;object-fit:cover;}
+.carrito{position:fixed;bottom:0;background:white;width:100%;padding:10px;}
 </style>
 </head>
+
 <body>
-<div class="toast" id="toast"></div>
 
-<!-- MAIN -->
-<div class="screen active" id="screen-main">
-  <div class="header">
-    <img class="header-logo" id="header-logo" src="" onerror="this.style.display='none';document.getElementById('header-logo-fb').style.display='flex'">
-    <div id="header-logo-fb" style="display:flex;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);align-items:center;justify-content:center;font-size:22px;">🐒</div>
-    <div class="header-titles">
-      <div class="header-sub" id="h-slogan">Calidad que se nota</div>
-      <div class="header-title" id="h-nombre">El Monoo</div>
-    </div>
-    <button class="cart-btn" onclick="goCart()">🛒 <span class="cart-count" id="cart-count-main">0</span></button>
-  </div>
+<header><h1>🥩 Carnicería</h1></header>
+<div id="banner"></div>
 
-  <div class="hero">
-    <img class="hero-logo" id="hero-logo" src="" onerror="this.style.display='none';document.getElementById('hero-logo-fb').style.display='flex'">
-    <div id="hero-logo-fb" style="display:flex;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.15);border:3px solid rgba(255,255,255,0.4);flex-shrink:0;align-items:center;justify-content:center;font-size:36px;">🐒</div>
-    <div>
-      <div class="hero-tag">Cortes frescos · Todos los días</div>
-      <div class="hero-h" id="hero-nombre">Carnicería El Mono</div>
-      <div class="hero-p" id="hero-slogan">"Calidad que se nota"</div>
-    </div>
-  </div>
+<select id="pago">
+<option value="ninguna">Forma de pago</option>
+<option value="transferencia">Transferencia</option>
+</select>
 
-  <div class="json-banner" id="json-banner">
-    <span>📄</span>
-    <span class="json-url" id="json-url-label">Cargando productos.json...</span>
-  </div>
+<div class="grid" id="contenedor"></div>
 
-  <div class="cat-nav" id="cat-nav">
-    <div class="cat-pill active" data-cat="all" onclick="filterCat(this,'all')">Todos</div>
-  </div>
-
-  <div id="products-container" style="flex:1;overflow-y:auto;padding-bottom:1rem;">
-    <div class="loading"><span class="loading-spinner">⏳</span>Cargando productos...</div>
-  </div>
-</div>
-
-<!-- DETAIL -->
-<div class="screen" id="screen-detail">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goMain()">&#8592;</button>
-    <div style="font-family:'Playfair Display',serif;font-size:16px;color:white;font-weight:700;">Detalle del producto</div>
-  </div>
-  <div style="flex:1;overflow-y:auto;">
-    <div class="detail-img-wrap" id="detail-img-wrap"></div>
-    <div class="detail-body">
-      <div class="detail-tag" id="detail-cat"></div>
-      <div class="detail-name" id="detail-name"></div>
-      <div class="detail-desc" id="detail-desc"></div>
-      <div class="detail-price-row">
-        <div class="detail-price" id="detail-price"></div>
-        <div style="font-size:14px;color:var(--muted);">/ kg</div>
-      </div>
-      <div class="qty-section">
-        <label>Cantidad (kg)</label>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="changeQty(-0.5)">−</button>
-          <div class="qty-val" id="qty-display">0.5 kg</div>
-          <button class="qty-btn" onclick="changeQty(0.5)">+</button>
-        </div>
-      </div>
-      <button class="add-btn" onclick="addToCart()">Agregar al carrito</button>
-      <span class="continue-link" onclick="goMain()">← Seguir comprando</span>
-    </div>
-  </div>
-</div>
-
-<!-- CART -->
-<div class="screen" id="screen-cart">
-  <div class="header">
-    <img class="header-logo" id="cart-logo" src="" onerror="this.style.display='none'">
-    <div class="header-titles" style="margin-left:10px;">
-      <div class="header-sub">Tu pedido</div>
-      <div class="header-title">Carrito</div>
-    </div>
-    <button class="cart-btn" onclick="goMain()" style="font-size:12px;">← Volver</button>
-  </div>
-  <div class="cart-list" id="cart-list"></div>
-  <div class="cart-footer">
-    <div class="cart-total-row">
-      <div>
-        <div class="cart-total-label">Total estimado</div>
-        <div style="font-size:11px;color:var(--muted);">Precios por kg</div>
-      </div>
-      <div class="cart-total-val" id="cart-total">$0</div>
-    </div>
-    <button class="wa-btn" onclick="sendWhatsApp()">💬 Finalizar por WhatsApp</button>
-    <span class="keep-shopping" onclick="goMain()">← Seguir comprando</span>
-  </div>
+<div class="carrito">
+<ul id="lista"></ul>
+<p id="total"></p>
+<button onclick="enviar()">Enviar Pedido</button>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════
-//  👇 ÚNICA LÍNEA QUE HAY QUE CAMBIAR:
-//     Poner la URL donde está alojado el productos.json
-// ══════════════════════════════════════════════════
-const JSON_URL = 'productos.json';//'productos.json';   // ← reemplazá con tu URL real
-// Ejemplo: 'https://micarniceria.com/datos/productos.json'
-// ══════════════════════════════════════════════════
+let productos=[],ofertasGenerales=[],carrito=[],formaPago="ninguna";
 
-const CAT_LABELS = {vacuno:'Vacuno',cerdo:'Cerdo',pollo:'Pollo',achuras:'Achuras',embutidos:'Embutidos'};
-const CAT_EMOJI  = {vacuno:'🐄',cerdo:'🐷',pollo:'🍗',achuras:'🔥',embutidos:'🌭'};
+fetch('productos.json')
+.then(r=>r.json())
+.then(data=>{
+  productos=data.productos.filter(p=>p.activo===1);
+  ofertasGenerales=data.ofertas_generales||[];
 
-let products=[], cart=[], currentProduct=null, currentQty=0.5, currentCat='all', negocio={};
+  if(data.config?.banner_ofertas?.activo){
+    const b=document.getElementById('banner');
+    b.style.display='block';
+    b.style.background=data.config.banner_ofertas.color;
+    b.innerText=data.config.banner_ofertas.titulo;
+  }
 
-// ── DATOS DE DEMO (se usan si no hay JSON disponible) ──
+  render();
+});
 
-const DEMO_DATA = {
-  negocio:{nombre:'Carnicería El Mono',slogan:'Calidad que se nota',whatsapp:'3517059004',logo:''},
-  productos:[
-    {id:1,nombre:'Asado de tira',descripcion:'Corte clásico argentino con hueso, ideal para la parrilla. Jugoso y tierno, de primera calidad.',categoria:'vacuno',precio:3200,foto:'',emoji:'🥩'},
-    {id:2,nombre:'Bife de chorizo',descripcion:'El rey de la parrilla. Corte grueso y tierno con grasa marmolada. Mínimo 2 cm de grosor.',categoria:'vacuno',precio:4800,foto:'',emoji:'🍖'},
-    {id:3,nombre:'Nalga',descripcion:'Corte magro y versátil, ideal para milanesas, bifes o estofados. Muy rendidor.',categoria:'vacuno',precio:2600,foto:'',emoji:'🥩'},
-    {id:4,nombre:'Bondiola de cerdo',descripcion:'Corte jugoso de la paleta del cerdo. Excelente a la parrilla o al horno.',categoria:'cerdo',precio:2400,foto:'',emoji:'🐷'},
-    {id:5,nombre:'Pechuga de pollo',descripcion:'Pechuga entera fresca sin hueso. Carne magra ideal para milanesas o a la plancha.',categoria:'pollo',precio:1800,foto:'',emoji:'🍗'},
-    {id:6,nombre:'Chorizo criollo',descripcion:'Chorizo artesanal condimentado a la criolla. Perfecto a la parrilla o en pan.',categoria:'achuras',precio:1600,foto:'',emoji:'🔥'},
-    {id:7,nombre:'Salchicha parrillera',descripcion:'Salchicha de cerdo y vacuno lista para asar. Suave y jugosa.',categoria:'embutidos',precio:1900,foto:'',emoji:'🌭'},
-  ]
+document.getElementById('pago').onchange=e=>{
+  formaPago=e.target.value;
+  render();
 };
 
-async function loadProducts() {
-  const banner = document.getElementById('json-banner');
-  const urlLabel = document.getElementById('json-url-label');
-  try {
-    const res = await fetch(JSON_URL);
-    if (!res.ok) throw new Error('No se pudo cargar el archivo');
-    const data = await res.json();
-    negocio = data.negocio || {};
-    products = data.productos.map(p => ({
-      id: p.id, name: p.nombre, desc: p.descripcion,
-      cat: p.categoria, price: p.precio,
-      img: p.foto || null, emoji: p.emoji || CAT_EMOJI[p.categoria] || '🥩'
-    }));
-    banner.className = 'json-banner';
-    urlLabel.textContent = `✓ ${products.length} productos cargados desde ${JSON_URL}`;
-    applyNegocio();
-    buildCatNav();
-    renderGrid();
-  } catch(e) {
-    // Demo mode
-    negocio = DEMO_DATA.negocio;
-    products = DEMO_DATA.productos.map(p => ({
-      id:p.id, name:p.nombre, desc:p.descripcion,
-      cat:p.categoria, price:p.precio, img:p.foto||null, emoji:p.emoji
-    }));
-    banner.className = 'json-banner error';
-    urlLabel.textContent = `⚠ Modo demo — reemplazá JSON_URL con tu archivo real`;
-    applyNegocio();
-    buildCatNav();
-    renderGrid();
-  }
-}
+function calcular(p){
+  const hoy=new Date().toISOString().split('T')[0];
+  let precio=p.precio;
 
-function applyNegocio() {
-  if (negocio.nombre) {
-    document.getElementById('h-nombre').textContent = negocio.nombre.replace('Carnicería ','');
-    document.getElementById('hero-nombre').textContent = negocio.nombre;
-    document.getElementById('h-slogan').textContent = negocio.slogan || '';
-    document.getElementById('hero-slogan').textContent = `"${negocio.slogan || ''}"`;
+  if(p.oferta && p.oferta_inicio && p.oferta_fin){
+    if(hoy>=p.oferta_inicio && hoy<=p.oferta_fin){
+      precio*= (1-p.oferta/100);
+    }
   }
-  if (negocio.logo) {
-    ['header-logo','hero-logo','cart-logo'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.src = negocio.logo;
-    });
-    const fb = document.getElementById('header-logo-fb');
-    if (fb) fb.style.display = 'none';
-    const hfb = document.getElementById('hero-logo-fb');
-    if (hfb) hfb.style.display = 'none';
-  }
-}
 
-function buildCatNav() {
-  const cats = [...new Set(products.map(p => p.cat))];
-  const nav = document.getElementById('cat-nav');
-  let html = `<div class="cat-pill active" data-cat="all" onclick="filterCat(this,'all')">Todos</div>`;
-  cats.forEach(c => {
-    html += `<div class="cat-pill" data-cat="${c}" onclick="filterCat(this,'${c}')">${CAT_EMOJI[c]||''} ${CAT_LABELS[c]||c}</div>`;
+  ofertasGenerales.forEach(o=>{
+    if(o.tipo==='pago' && o.forma_pago===formaPago){
+      precio*= (1-o.descuento/100);
+    }
   });
-  nav.innerHTML = html;
+
+  return Math.round(precio);
 }
 
-function filterCat(el, cat) {
-  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  currentCat = cat;
-  renderGrid();
-}
+function render(){
+  const c=document.getElementById('contenedor');
+  c.innerHTML='';
 
-function imgEl(p, w, h) {
-  if (p.img) return `<img src="${p.img}" onerror="this.parentElement.innerHTML='<span style=font-size:${Math.round(h*0.45)}px>${p.emoji}</span>'">`;
-  return `<span style="font-size:${Math.round(h*0.45)}px;">${p.emoji}</span>`;
-}
+  productos.forEach(p=>{
+    const precio=calcular(p);
+    const div=document.createElement('div');
 
-function renderGrid() {
-  const filtered = currentCat==='all' ? products : products.filter(p=>p.cat===currentCat);
-  const cats = [...new Set(filtered.map(p=>p.cat))];
-  let html = '';
-  cats.forEach(cat => {
-    const items = filtered.filter(p=>p.cat===cat);
-    html += `<div class="section-label">${CAT_EMOJI[cat]||''} ${CAT_LABELS[cat]||cat}</div><div class="products-grid">`;
-    items.forEach(p => {
-      html += `<div class="prod-card" onclick="goDetail(${p.id})">
-        <div class="prod-img-wrap">${imgEl(p,200,110)}</div>
-        <div class="prod-info">
-          <div class="prod-name">${p.name}</div>
-          <div class="prod-desc">${p.desc.substring(0,52)}…</div>
-          <div class="prod-price">$${p.price.toLocaleString()} <span class="prod-unit">/kg</span></div>
-        </div>
-      </div>`;
-    });
-    html += `</div>`;
+    div.className='card';
+    div.innerHTML=`
+    <img src="${p.foto}">
+    <h4>${p.emoji} ${p.nombre}</h4>
+    <p>${precio < p.precio ? `<del>$${p.precio}</del> $${precio}` : `$${precio}`}</p>
+    <button onclick="add(${p.id})">Agregar</button>
+    `;
+
+    c.appendChild(div);
   });
-  document.getElementById('products-container').innerHTML = html;
 }
 
-function updateCartCount() { document.getElementById('cart-count-main').textContent = cart.length; }
+function add(id){
+  const p=productos.find(x=>x.id===id);
+  const item=carrito.find(x=>x.id===id);
 
-function goMain() { showScreen('screen-main'); renderGrid(); }
+  if(item){ item.cantidad++; }
+  else{ carrito.push({...p,cantidad:1}); }
 
-function goDetail(id) {
-  currentProduct = products.find(p=>p.id===id);
-  currentQty = 0.5;
-  const wrap = document.getElementById('detail-img-wrap');
-  wrap.innerHTML = currentProduct.img
-    ? `<img src="${currentProduct.img}" onerror="this.parentElement.innerHTML='<span style=font-size:90px>${currentProduct.emoji}</span>'">`
-    : `<span style="font-size:90px;">${currentProduct.emoji}</span>`;
-  document.getElementById('detail-cat').textContent = CAT_LABELS[currentProduct.cat]||currentProduct.cat;
-  document.getElementById('detail-name').textContent = currentProduct.name;
-  document.getElementById('detail-desc').textContent = currentProduct.desc;
-  document.getElementById('detail-price').textContent = '$'+currentProduct.price.toLocaleString();
-  document.getElementById('qty-display').textContent = '0.5 kg';
-  showScreen('screen-detail');
+  actualizar();
 }
 
-function changeQty(d) {
-  currentQty = Math.max(0.5, Math.round((currentQty+d)*10)/10);
-  document.getElementById('qty-display').textContent = currentQty.toFixed(1)+' kg';
-}
-
-function addToCart() {
-  const ex = cart.find(i=>i.id===currentProduct.id);
-  if (ex) ex.qty = Math.round((ex.qty+currentQty)*10)/10;
-  else cart.push({...currentProduct, qty:currentQty});
-  updateCartCount();
-  showToast(`✓ ${currentProduct.name} agregado`);
-  setTimeout(goMain, 900);
-}
-
-function goCart() { renderCart(); showScreen('screen-cart'); }
-
-function renderCart() {
-  const list = document.getElementById('cart-list');
-  if (!cart.length) {
-    list.innerHTML = `<div class="loading"><span class="loading-spinner">🛒</span><div style="font-size:15px;font-weight:600;">Carrito vacío</div><div style="font-size:13px;margin-top:6px;">Agregá productos para hacer tu pedido</div></div>`;
-    document.getElementById('cart-total').textContent = '$0';
-    return;
-  }
-  let html='', total=0;
-  cart.forEach(item => {
-    const sub = item.price*item.qty;
-    total += sub;
-    const thumb = item.img ? `<img src="${item.img}" onerror="this.parentElement.innerHTML='${item.emoji}'">` : item.emoji;
-    html += `<div class="cart-item">
-      <div class="cart-thumb">${thumb}</div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-detail">${item.qty.toFixed(1)} kg · $${sub.toLocaleString()}</div>
-      </div>
-      <button class="cart-item-remove" onclick="removeItem(${item.id})">✕</button>
-    </div>`;
-  });
-  list.innerHTML = html;
-  document.getElementById('cart-total').textContent = '$'+total.toLocaleString();
-}
-
-function removeItem(id) { cart=cart.filter(i=>i.id!==id); updateCartCount(); renderCart(); }
-
-function sendWhatsApp() {
-  if (!cart.length) { showToast('¡Agregá productos primero!'); return; }
-  const nombre = negocio.nombre || 'Carnicería El Mono';
-  let msg = `🐒 *PEDIDO - ${nombre}*\n_${negocio.slogan||''}_\n`;
-  msg += '━━━━━━━━━━━━━━━━━━\n';
+function actualizar(){
   let total=0;
-  cart.forEach(i => {
-    const sub=i.price*i.qty; total+=sub;
-    msg += `• ${i.emoji} *${i.name}*: ${i.qty.toFixed(1)} kg → $${sub.toLocaleString()}\n`;
+  const ul=document.getElementById('lista');
+  ul.innerHTML='';
+
+  carrito.forEach(p=>{
+    const precio=calcular(p);
+    total+=precio*p.cantidad;
+
+    const li=document.createElement('li');
+    li.textContent=`${p.nombre} x${p.cantidad} - $${precio*p.cantidad}`;
+    ul.appendChild(li);
   });
-  msg += '━━━━━━━━━━━━━━━━━━\n';
-  msg += `💰 *Total estimado: $${total.toLocaleString()}*\n\nPor favor confirmame disponibilidad y acordamos la entrega. ¡Gracias! 🙏`;
-  const wa = negocio.whatsapp || '';
-  window.open(`https://wa.me/${wa}?text=`+encodeURIComponent(msg), '_blank');
+
+  document.getElementById('total').innerText="Total: $"+total;
 }
 
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+function enviar(){
 
-function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2200);
-}
+  const pedido={
+    fecha:new Date().toISOString(),
+    items:carrito,
+    total:carrito.reduce((a,p)=>a+calcular(p)*p.cantidad,0),
+    formaPago:formaPago
+  };
 
-loadProducts();
+  let pedidos=JSON.parse(localStorage.getItem('pedidos'))||[];
+  pedidos.push(pedido);
+  localStorage.setItem('pedidos',JSON.stringify(pedidos));
+
+  alert("Pedido guardado ✔");
+
+  carrito=[];
+  actualizar();
+}
 </script>
+
 </body>
 </html>

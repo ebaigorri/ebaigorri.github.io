@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Admin</title></head>
+<body>
+
+<h2>Admin</h2>
+<button onclick="descargar()">Descargar JSON</button>
+
+<script>
+fetch('productos.json')
+.then(r=>r.json())
+.then(data=>window.productos=data);
+
+function descargar(){
+  const dataStr="data:text/json;charset=utf-8,"+
+  encodeURIComponent(JSON.stringify(window.productos,null,2));
+
+  const a=document.createElement('a');
+  a.href=dataStr;
+  a.download="productos.json";
+  a.click();
+}
+</script>
+
+</body>
+</html>
