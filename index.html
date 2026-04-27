@@ -493,15 +493,15 @@ body{
 /* ══════════════════════════════════════════
    CONFIGURACIÓN — solo cambiá esta línea
 ══════════════════════════════════════════ */
-const PRODUCTOS_URL = 'productos.json';
+const PRODUCTOS_URL = 'https://ebaigorri.github.io/productos.json';
 /* Ejemplo producción:
    const PRODUCTOS_URL = 'https://tuusuario.github.io/carniceria/productos.json'; */
 
 /* ══════════════════════════════════════════
    CONSTANTES
 ══════════════════════════════════════════ */
-const CAT_LABEL = {vacuno:'Vacuno',cerdo:'Cerdo',pollo:'Pollo',achuras:'Achuras',embutidos:'Embutidos'};
-const CAT_EMOJI = {vacuno:'🐄',cerdo:'🐷',pollo:'🍗',achuras:'🔥',embutidos:'🌭'};
+const CAT_LABEL = {vacuno:'Vacuno',cerdo:'Cerdo',pollo:'Pollo',achuras:'Achuras',embutidos:'Embutidos',preparado:'Preparados'};
+const CAT_EMOJI = {vacuno:'🐄',cerdo:'🐷',pollo:'🍗',achuras:'🔥',embutidos:'🌭',preparado:'🍽️'};
 
 /* ══════════════════════════════════════════
    ESTADO
@@ -544,7 +544,7 @@ const DATOS_DEMO = {
 ══════════════════════════════════════════ */
 function cargarDatos(data) {
   negocio   = data.negocio || {};
-  productos = (data.productos || []).filter(function(p){ return p.activo === undefined || p.activo === null || p.activo === 1; });
+  productos = (data.productos || []).filter(function(p){ return p.activo === 1; });
   aplicarNegocio();
   construirCats();
   renderGrilla();
