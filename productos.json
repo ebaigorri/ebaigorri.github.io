@@ -21,11 +21,11 @@
     { "id": 20, "nombre": "Pechito de Cerdo", "descripcion": "Costillas sabrosas.", "categoria": "cerdo", "precio": 12000, "foto": "", "emoji": "🐖", "activo": 1 },
     { "id": 21, "nombre": "Carré", "descripcion": "Magro y tierno.", "categoria": "cerdo", "precio": 12000, "foto": "", "emoji": "🐖", "activo": 1 },
     { "id": 22, "nombre": "Chuleta", "descripcion": "Para plancha o parrilla.", "categoria": "cerdo", "precio": 8000, "foto": "", "emoji": "🍖", "activo": 1 },
-    { "id": 30, "nombre": "Pechuga", "descripcion": "Carne magra.", "categoria": "pollo", "precio": 10500, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🍗", "activo": 1 },
-    { "id": 31, "nombre": "Pata Muslo", "descripcion": "Jugoso y económico.", "categoria": "pollo", "precio": 4800, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🍗", "activo": 1 },
-    { "id": 32, "nombre": "Alita", "descripcion": "Ideal para fritar.", "categoria": "pollo", "precio": 3500, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🍗", "activo": 1 },
-    { "id": 33, "nombre": "Pollo Entero", "descripcion": "Para toda la familia.", "categoria": "pollo", "precio": 6500, "foto": "https://images.unsplash.com/photo-1604503468506-a8da13d82791", "emoji": "🐔", "activo": 1 },
-    { "id": 40, "nombre": "Milanesa de Pollo", "descripcion": "Lista para cocinar.", "categoria": "preparado", "precio": 8000, "foto": "https://images.unsplash.com/photo-1604908177522-0409c3bfa9b5", "emoji": "🍽️", "activo": 1 },
-    { "id": 41, "nombre": "Milanesa de Carne", "descripcion": "Tierna y lista.", "categoria": "preparado", "precio": 13000, "foto": "https://images.unsplash.com/photo-1604908177522-0409c3bfa9b5", "emoji": "🍽️", "activo": 1 }
+    { "id": 30, "nombre": "Pechuga", "descripcion": "Carne magra.", "categoria": "pollo", "precio": 10500, "foto": "", "emoji": "🍗", "activo": 1 },
+    { "id": 31, "nombre": "Pata Muslo", "descripcion": "Jugoso y económico.", "categoria": "pollo", "precio": 4800, "foto": "", "emoji": "🍗", "activo": 1 },
+    { "id": 32, "nombre": "Alita", "descripcion": "Ideal para fritar.", "categoria": "pollo", "precio": 3500, "foto": "", "emoji": "🍗", "activo": 1 },
+    { "id": 33, "nombre": "Pollo Entero", "descripcion": "Para toda la familia.", "categoria": "pollo", "precio": 6500, "foto": "", "emoji": "🐔", "activo": 1 },
+    { "id": 40, "nombre": "Milanesa de Pollo", "descripcion": "Lista para cocinar.", "categoria": "preparado", "precio": 8000, "foto": "", "emoji": "🍽️", "activo": 1 },
+    { "id": 41, "nombre": "Milanesa de Carne", "descripcion": "Tierna y lista.", "categoria": "preparado", "precio": 13000, "foto": "", "emoji": "🍽️", "activo": 1 }
   ]
 }
