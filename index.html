@@ -493,7 +493,7 @@ body{
 /* ══════════════════════════════════════════
    CONFIGURACIÓN — solo cambiá esta línea
 ══════════════════════════════════════════ */
-const PRODUCTOS_URL = 'https://ebaigorri.github.io/productos.json';
+const PRODUCTOS_URL = 'productos.json';
 /* Ejemplo producción:
    const PRODUCTOS_URL = 'https://tuusuario.github.io/carniceria/productos.json'; */
 
@@ -551,7 +551,7 @@ function cargarDatos(data) {
 }
 
 function init() {
-  fetch(PRODUCTOS_URL + '?t=' + Date.now())
+  fetch(PRODUCTOS_URL)
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
@@ -781,7 +781,7 @@ function mostrarScreen(id) {
   window.scrollTo(0, 0);
 }
 function goMain()    { mostrarScreen('screen-main'); }
-function goCarrito() { renderCarrito(); mostrarScreen('screen-cart'); }
+
 
 /* ══════════════════════════════════════════
    HELPERS
