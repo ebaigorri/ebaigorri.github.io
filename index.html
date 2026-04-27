@@ -586,8 +586,10 @@ function aplicarNegocio() {
     const heroHTML = `<div class="hero-logo"><img src="${negocio.logo}" alt="logo" onerror="this.parentElement.outerHTML='<div class=hero-logo-fb>🐒</div>'"></div>`;
     document.getElementById('hdr-logo-wrap').innerHTML  = logoHTML;
     document.getElementById('hero-logo-wrap').innerHTML = heroHTML;
-    document.getElementById('hdr-logo-fb').style.display  = 'none';
-    document.getElementById('hero-logo-fb').style.display = 'none';
+    var hdrFb = document.getElementById('hdr-logo-fb');
+    if (hdrFb) hdrFb.style.display = 'none';
+    var heroFb = document.getElementById('hero-logo-fb');
+    if (heroFb) heroFb.style.display = 'none';
   }
 }
 
