@@ -31,7 +31,7 @@
       "categoria": "vacuno",
       "inicio": "2026-04-25",
       "fin": "2026-05-05",
-      "activo": true
+      "activo": False
     }
   ],
   "productos": [
@@ -43,7 +43,8 @@
       "precio": 12000,
       "foto": "",
       "emoji": "🍲",
-      "activo": 1
+      "activo": 1, 
+      "unidad": "kg"
     },
     {
       "id": 2,
@@ -53,7 +54,8 @@
       "precio": 10000,
       "foto": "",
       "emoji": "🍲",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 3,
@@ -63,7 +65,8 @@
       "precio": 16000,
       "foto": "",
       "emoji": "🔥",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 4,
@@ -73,7 +76,8 @@
       "precio": 16000,
       "foto": "",
       "emoji": "🥩",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 5,
@@ -83,7 +87,8 @@
       "precio": 16000,
       "foto": "",
       "emoji": "🍖",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 6,
@@ -93,7 +98,8 @@
       "precio": 8000,
       "foto": "",
       "emoji": "🍔",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 7,
@@ -103,7 +109,8 @@
       "precio": 24000,
       "foto": "",
       "emoji": "🥩",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 8,
@@ -113,7 +120,8 @@
       "precio": 23500,
       "foto": "",
       "emoji": "🥩",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 9,
@@ -123,7 +131,8 @@
       "precio": 22500,
       "foto": "",
       "emoji": "🔥",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 10,
@@ -133,7 +142,8 @@
       "precio": 24000,
       "foto": "",
       "emoji": "🔥",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 11,
@@ -143,7 +153,8 @@
       "precio": 24000,
       "foto": "",
       "emoji": "🥩",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 12,
@@ -153,7 +164,8 @@
       "precio": 24000,
       "foto": "",
       "emoji": "🍖",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 20,
@@ -163,7 +175,8 @@
       "precio": 12000,
       "foto": "",
       "emoji": "🐖",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 21,
@@ -173,7 +186,8 @@
       "precio": 12000,
       "foto": "",
       "emoji": "🐖",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 22,
@@ -183,7 +197,8 @@
       "precio": 8000,
       "foto": "",
       "emoji": "🍖",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 30,
@@ -193,7 +208,8 @@
       "precio": 10500,
       "foto": "",
       "emoji": "🍗",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 31,
@@ -203,7 +219,8 @@
       "precio": 4800,
       "foto": "",
       "emoji": "🍗",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 32,
@@ -213,7 +230,8 @@
       "precio": 3500,
       "foto": "",
       "emoji": "🍗",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 33,
@@ -223,7 +241,8 @@
       "precio": 6500,
       "foto": "",
       "emoji": "🐔",
-      "activo": 1
+      "activo": 1,
+      "unidad": "unidad"
     },
     {
       "id": 40,
@@ -233,7 +252,8 @@
       "precio": 8000,
       "foto": "",
       "emoji": "🍽️",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 41,
@@ -243,7 +263,8 @@
       "precio": 13000,
       "foto": "",
       "emoji": "🍽️",
-      "activo": 1
+      "activo": 1,
+      "unidad": "kg"
     },
     {
       "id": 42,
