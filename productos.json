@@ -31,7 +31,7 @@
       "categoria": "vacuno",
       "inicio": "2026-04-25",
       "fin": "2026-05-05",
-      "activo": False
+      "activo": 0
     }
   ],
   "productos": [
