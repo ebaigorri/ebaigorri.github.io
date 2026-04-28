@@ -35,22 +35,6 @@
     }
   ],
   "productos": [
-    { "id": 1,  "nombre": "Asado de tira",       "descripcion": "Corte clásico argentino con hueso, ideal para la parrilla. Jugoso y tierno, de primera calidad.",         
-	"categoria": "vacuno",    "precio": 18000, "foto": "", "emoji": "🥩", "activo": 1, 
-	"oferta": 15, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg" },
-    { "id": 2,  "nombre": "Bife de chorizo",      "descripcion": "El rey de la parrilla. Corte grueso y tierno con grasa marmolada. Mínimo 2 cm de grosor.",               "categoria": "vacuno",    "precio": 24000, "foto": "", "emoji": "🍖", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 3,  "nombre": "Aguja Parrillera",     "descripcion": "Ideal para parrilla.",                                                                                    "categoria": "vacuno",    "precio": 16000, "foto": "", "emoji": "🔥", "activo": 0, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 4,  "nombre": "Bondiola de cerdo",    "descripcion": "Corte jugoso y sabroso de la paleta del cerdo. Excelente marinado a la parrilla o al horno.",             "categoria": "cerdo",     "precio": 14000, "foto": "", "emoji": "🐷", "activo": 1, "oferta": 20, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-05-02", "unidad": "kg" },
-    { "id": 5,  "nombre": "Costilla de cerdo",    "descripcion": "Costillas para asar o estofar. Carne tierna con hueso, perfecta para caramelizar con salsa barbacoa.",   "categoria": "cerdo",     "precio": 12000, "foto": "", "emoji": "🐷", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 6,  "nombre": "Pechuga de pollo",     "descripcion": "Pechuga entera fresca, sin hueso. Carne magra ideal para milanesas o a la plancha.",                     "categoria": "pollo",     "precio": 9500,  "foto": "", "emoji": "🍗", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 7,  "nombre": "Muslo y contramuslo",  "descripcion": "La parte más jugosa del pollo. Perfecta para el horno, estofados o al disco.",                           "categoria": "pollo",     "precio": 8000,  "foto": "", "emoji": "🍗", "activo": 1, "oferta": 10, "oferta_inicio": "2026-04-27", "oferta_fin": "2026-04-28", "unidad": "kg" },
-    { "id": 8,  "nombre": "Chorizo criollo",      "descripcion": "Chorizo artesanal de cerdo condimentado a la criolla. Perfecto a la parrilla o en pan.",                 "categoria": "achuras",   "precio": 8500,  "foto": "", "emoji": "🔥", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 9,  "nombre": "Morcilla",             "descripcion": "Morcilla casera con especias seleccionadas. Ideal para acompañar el asado.",                             "categoria": "achuras",   "precio": 7500,  "foto": "", "emoji": "🔥", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 10, "nombre": "Salchicha parrillera", "descripcion": "Salchicha de cerdo y vacuno lista para asar. Suave y jugosa.",                                           "categoria": "embutidos", "precio": 9000,  "foto": "", "emoji": "🌭", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "kg" },
-    { "id": 11, "nombre": "Milanesa de pollo",    "descripcion": "Milanesas de pechuga frescas, listas para cocinar. Tiernas y sabrosas.",                                 "categoria": "preparado", "precio": 13000, "foto": "", "emoji": "🍽️", "activo": 1, "oferta": 25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-05-01", "unidad": "unidad" },
-    { "id": 12, "nombre": "Milanesa de carne",    "descripcion": "Milanesas de nalga tiernas, apanadas artesanalmente. El clásico de la mesa argentina.",                 "categoria": "preparado", "precio": 15000, "foto": "", "emoji": "🍽️", "activo": 1, "oferta": 0,  "oferta_inicio": "", "oferta_fin": "", "unidad": "unidad" }
-  ]
-  "productos": [
     {
       "id": 1,
       "nombre": "Puchero Caracu",
