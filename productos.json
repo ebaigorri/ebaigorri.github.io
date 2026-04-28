@@ -253,7 +253,7 @@
       "precio": 15000,
       "foto": "",
       "emoji": "🐔",
-      "activo": 1, "oferta": 6.25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 1, "oferta": 6.25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     },
     {
       "id": 43,
@@ -263,7 +263,7 @@
       "precio": 24000,
       "foto": "",
       "emoji": "🥩",
-      "activo": 1, "oferta": 7.69, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 1, "oferta": 7.69, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     },
     {
       "id": 44,
@@ -273,7 +273,7 @@
       "precio": 6000,
       "foto": "",
       "emoji": "🐔",
-      "activo": 1, "oferta": 14.28, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 1, "oferta": 14.28, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     },
     {
       "id": 45,
@@ -283,7 +283,7 @@
       "precio": 9000,
       "foto": "",
       "emoji": "🐔",
-      "activo": 1, "oferta": 6.25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 1, "oferta": 6.25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     },
     {
       "id": 46,
@@ -293,7 +293,7 @@
       "precio": 3000,
       "foto": "",
       "emoji": "🐔",
-      "activo": 0, "oferta": 5, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 0, "oferta": 5, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     },
     {
       "id": 47,
@@ -303,7 +303,7 @@
       "precio": 8000,
       "foto": "",
       "emoji": "🐔",
-      "activo": 1, "oferta": 10, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 1, "oferta": 10, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     },
     {
       "id": 48,
@@ -313,7 +313,7 @@
       "precio": 15000,
       "foto": "",
       "emoji": "🐄",
-      "activo": 1, "oferta": 6.25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "kg"
+      "activo": 1, "oferta": 6.25, "oferta_inicio": "2026-04-25", "oferta_fin": "2026-04-30", "unidad": "unidad"
     }
   ]
 }
