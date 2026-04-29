@@ -279,7 +279,7 @@
       "foto": "",
       "emoji": "🐔",
       "activo": 1,
-      "oferta": 6.25,
+      "oferta": 6.666666667,
       "oferta_inicio": "2026-04-25",
       "oferta_fin": "2026-04-30",
       "unidad": "unidad"
@@ -293,7 +293,7 @@
       "foto": "",
       "emoji": "🥩",
       "activo": 1,
-      "oferta": 7.69,
+      "oferta": 7.692308,
       "oferta_inicio": "2026-04-25",
       "oferta_fin": "2026-04-30",
       "unidad": "unidad"
@@ -307,7 +307,7 @@
       "foto": "",
       "emoji": "🐔",
       "activo": 1,
-      "oferta": 14.28,
+      "oferta": 16.66666667,
       "oferta_inicio": "2026-04-25",
       "oferta_fin": "2026-04-30",
       "unidad": "unidad"
@@ -321,7 +321,7 @@
       "foto": "",
       "emoji": "🐔",
       "activo": 1,
-      "oferta": 6.25,
+      "oferta": 11.11111111,
       "oferta_inicio": "2026-04-25",
       "oferta_fin": "2026-04-30",
       "unidad": "unidad"
@@ -349,7 +349,7 @@
       "foto": "",
       "emoji": "🐔",
       "activo": 1,
-      "oferta": 10,
+      "oferta": 0.001,
       "oferta_inicio": "2026-04-25",
       "oferta_fin": "2026-04-30",
       "unidad": "unidad"
@@ -359,7 +359,7 @@
       "nombre": "Molida Oferta_2Kg",
       "descripcion": "Llevado 2Kg de carne molida/picada",
       "categoria": "vacuno",
-      "precio": 15000,
+      "precio": 16000,
       "foto": "",
       "emoji": "🐄",
       "activo": 1,
