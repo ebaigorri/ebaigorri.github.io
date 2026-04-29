@@ -409,6 +409,34 @@
       "oferta": 0,
       "oferta_inicio": "2026-04-27",
       "oferta_fin": "2026-05-31"
+    },
+    {
+      "id": 52,
+      "nombre": "Chorizo Criollo Oferta_2K",
+      "descripcion": "Llevando 2K de chorizo criollo.\nPerfecto a la parrilla o en pan.",
+      "categoria": "embutidos",
+      "unidad": "unidad",
+      "precio": 15000,
+      "emoji": "🔥",
+      "foto": "",
+      "activo": 1,
+      "oferta": 1,
+      "oferta_inicio": "2026-04-27",
+      "oferta_fin": "2026-05-31"
+    },
+    {
+      "id": 53,
+      "nombre": "Asado Surtido Oferta_4Kg",
+      "descripcion": "Llevando 4Kg de asado surtido",
+      "categoria": "preparado",
+      "unidad": "unidad",
+      "precio": 48000,
+      "emoji": "🔥",
+      "foto": "",
+      "activo": 1,
+      "oferta": 1,
+      "oferta_inicio": "2026-04-27",
+      "oferta_fin": "2026-05-31"
     }
   ]
 }
