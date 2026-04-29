@@ -25,7 +25,7 @@
       "forma_pago": "transferencia",
       "inicio": "2026-04-25",
       "fin": "2026-05-10",
-      "activo": true
+      "activo": false
     },
     {
       "id": 2,
@@ -35,7 +35,7 @@
       "categoria": "vacuno",
       "inicio": "2026-04-25",
       "fin": "2026-05-05",
-      "activo": 0
+      "activo": false
     }
   ],
   "productos": [
@@ -370,10 +370,10 @@
     },
     {
       "id": 49,
-      "nombre": "Combo semanal",
+      "nombre": "Combo 1 semanal",
       "descripcion": "1kg blanda de cerdo, 1kg carne molida, 1kg pata muslo, 1kg  Mila de pollo, 1kg hígado",
       "categoria": "preparado",
-      "unidad": "kg",
+      "unidad": "unidad",
       "precio": 33999,
       "emoji": "🍗🥩",
       "foto": "",
@@ -381,6 +381,34 @@
       "oferta": 0,
       "oferta_inicio": "2026-04-27",
       "oferta_fin": "2026-05-01"
+    },
+    {
+      "id": 50,
+      "nombre": "Combo 2 semanal",
+      "descripcion": "1kg de Marucha o aguja, 1kg pata muslo, 1kg blanda de cerdo,  1kg carne molida, 1kg Mila de pollo",
+      "categoria": "preparado",
+      "unidad": "unidad",
+      "precio": 41999,
+      "emoji": "🍗🥩",
+      "foto": "",
+      "activo": 1,
+      "oferta": 0,
+      "oferta_inicio": "2026-04-27",
+      "oferta_fin": "2026-05-01"
+    },
+    {
+      "id": 51,
+      "nombre": "Puchero Comun Oferta_3Kg",
+      "descripcion": "llevando 3kg de puchero común",
+      "categoria": "preparado",
+      "unidad": "unidad",
+      "precio": 15000,
+      "emoji": "🍲",
+      "foto": "",
+      "activo": 1,
+      "oferta": 0,
+      "oferta_inicio": "2026-04-27",
+      "oferta_fin": "2026-05-31"
     }
   ]
 }
