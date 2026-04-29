@@ -434,7 +434,7 @@
       "emoji": "🔥",
       "foto": "",
       "activo": 1,
-      "oferta": 1,
+      "oferta": 0.00000000000001,
       "oferta_inicio": "2026-04-27",
       "oferta_fin": "2026-05-31"
     }
