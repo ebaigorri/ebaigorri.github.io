@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Carnicería El Mono — Calidad que se nota</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════
+   VARIABLES & RESET
+═══════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --rojo:#8B1E1E;
+  --rojo-med:#A52525;
+  --rojo-light:#FDF0F0;
+  --dorado:#C9A227;
+  --dorado-light:#FBF5E0;
+  --negro:#1A1A1A;
+  --gris-oscuro:#3D3D3D;
+  --gris-med:#7A7A7A;
+  --gris-claro:#E8E8E8;
+  --fondo:#F8F6F3;
+  --blanco:#FFFFFF;
+  --borde:rgba(0,0,0,0.08);
+  --sombra:0 2px 16px rgba(0,0,0,0.07);
+  --sombra-med:0 6px 28px rgba(0,0,0,0.11);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--fondo);
+  color:var(--negro);
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+img{display:block;}
+
+/* ═══════════════════════════
+   SCREENS
+═══════════════════════════ */
+.screen{display:none;flex-direction:column;min-height:100vh;}
+.screen.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+.screen.active{animation:fadeIn .22s ease;}
+
+/* ═══════════════════════════
+   HEADER STICKY
+═══════════════════════════ */
+.header{
+  background:var(--negro);
+  padding:.7rem 1.1rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;top:0;z-index:300;
+  border-bottom:2px solid var(--rojo);
+}
+.header-left{display:flex;align-items:center;gap:10px;}
+.logo-wrap{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,.18);overflow:hidden;flex-shrink:0;}
+.logo-wrap img{width:100%;height:100%;object-fit:cover;}
+.logo-fb{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.header-brand{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#fff;letter-spacing:-.1px;line-height:1.05;}
+.header-slogan{font-size:9px;color:var(--dorado);letter-spacing:1.8px;text-transform:uppercase;margin-top:2px;font-weight:600;}
+.cart-fab{
+  background:var(--rojo);border:none;border-radius:50px;
+  padding:8px 15px;color:#fff;font-size:13px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;gap:6px;
+  font-family:'DM Sans',sans-serif;transition:background .15s;
+}
+.cart-fab:active{background:var(--rojo-med);}
+.cart-badge{
+  background:#fff;color:var(--rojo);border-radius:50%;
+  width:18px;height:18px;font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ═══════════════════════════
+   HERO — pantalla completa
+═══════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;
+  height:72vw;max-height:340px;min-height:220px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url(https://scontent.fcor11-2.fna.fbcdn.net/v/t39.30808-6/675440800_10235565546933305_667818596837530552_n.jpg?stp=dst-jpg_tt6&cstp=mx1439x1244&ctp=s590x590&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeESO0JqpSV-QWfxeEKQkLOC1hxQx2rGHB7WHFDHasYcHkD8y82YuTwsadJjrgmJe_M&_nc_ohc=ieJYVsgYVRQQ7kNvwEsA5TY&_nc_oc=AdrTas2pnlmkeFVLnPbc2tIkQoTRQl0KWWNhMBtZDYvGM7b1nmXA3iWzAAUUSQrcrjqM91epX-4D2NXtNqJLC0Vn&_nc_zt=23&_nc_ht=scontent.fcor11-2.fna&_nc_gid=IlCR6KndVtFAwdcpGBKX5w&_nc_ss=7d2a8&oh=00_Af_gOcjfNJ0630jDcm3lNpVzUZnGFNe2TaUGwEi_6LISVw&oe=6A2FEB9C);/*(https://scontent.fcor11-2.fna.fbcdn.net/v/t39.30808-6/672688277_10235575067011301_8277834912206787558_n.jpg?stp=dst-jpg_tt6&cstp=mx1541x712&ctp=s1541x712&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH1GKn5s3JGKGGfwNdz-26lcky0AfEkHSlyTLQB8SQdKUieZMho7juskzjSlj0gG1A&_nc_ohc=yiAi9WNNh4QQ7kNvwEnPntN&_nc_oc=AdqmuecYqhOQJ94DOLN6BkJjd-LOCltd04lfZ2TCaWrcHRwsmoRpXSSp4P_7X3aDEJb7CGroz4s0xtRe2XtnJqrn&_nc_zt=23&_nc_ht=scontent.fcor11-2.fna&_nc_gid=sxrVn5ng540WLTkrz1kUBw&_nc_ss=7d2a8&oh=00_Af_VvUme7JXoTMlRbcBKMY2Iz4pLOe0FkLezaUAvr83Psg&oe=6A2FF6AD);/*url('https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?auto=format&fit=crop&w=800&q=85');*/*/
+  background-size:cover;background-position:center 35%;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(15,5,5,.88) 0%,rgba(15,5,5,.45) 45%,rgba(15,5,5,.15) 100%);
+}
+.hero-content{position:relative;z-index:2;padding:1.3rem 1.2rem 1.6rem;}
+.hero-logo-row{display:flex;align-items:center;gap:11px;margin-bottom:.9rem;}
+.hero-logo{width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,.42);overflow:hidden;flex-shrink:0;box-shadow:0 3px 14px rgba(0,0,0,.4);}
+.hero-logo img{width:100%;height:100%;object-fit:cover;}
+.hero-logo-fb{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:27px;flex-shrink:0;}
+.hero-loc{font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--dorado);font-weight:700;}
+.hero-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;color:#fff;line-height:1.1;}
+.hero-tagline{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:20px;font-weight:700;color:#fff;line-height:1.25;
+  margin-bottom:1rem;
+}
+.hero-tagline span{color:var(--dorado);}
+.hero-btns{display:flex;gap:8px;}
+.hero-btn-primary{
+  flex:1;background:var(--rojo);color:#fff;
+  border:none;border-radius:50px;padding:12px 10px;
+  font-size:13px;font-weight:700;cursor:pointer;
+  font-family:'DM Sans',sans-serif;text-align:center;
+}
+.hero-btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  background:#25D366;color:#fff;
+  border:none;border-radius:50px;padding:12px 14px;
+  font-size:13px;font-weight:700;cursor:pointer;
+  font-family:'DM Sans',sans-serif;white-space:nowrap;
+}
+.hero-btn-primary:active{opacity:.88;}
+.hero-btn-wa:active{opacity:.88;}
+
+/* ═══════════════════════════
+   TRUST BAR — 4 íconos
+═══════════════════════════ */
+.trust-bar{
+  background:var(--negro);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.trust-item{
+  display:flex;flex-direction:column;align-items:center;
+  gap:5px;padding:12px 6px;
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.trust-item:last-child{border-right:none;}
+.trust-icon{font-size:18px;}
+.trust-text{font-size:9.5px;color:rgba(255,255,255,.55);text-align:center;line-height:1.3;font-weight:500;}
+
+/* ═══════════════════════════
+   SECCIÓN GENÉRICA
+═══════════════════════════ */
+.sec-header{
+  padding:1.4rem 1.2rem .9rem;
+  display:flex;align-items:baseline;justify-content:space-between;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:900;color:var(--negro);line-height:1.1;
+}
+.sec-title span{color:var(--rojo);}
+.sec-sub{font-size:12px;color:var(--gris-med);margin-top:3px;}
+.sec-ver{font-size:12px;font-weight:700;color:var(--rojo);cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+
+/* ═══════════════════════════
+   CARDS DE CATEGORÍAS
+═══════════════════════════ */
+.cats-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:9px;padding:0 1.1rem 1.3rem;
+}
+.cat-card{
+  border-radius:12px;overflow:hidden;position:relative;
+  height:90px;cursor:pointer;
+  box-shadow:var(--sombra);
+}
+.cat-card-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  transition:transform .3s;
+}
+.cat-card:active .cat-card-bg{transform:scale(1.04);}
+.cat-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(139,30,30,.72) 0%,rgba(0,0,0,.35) 100%);
+}
+.cat-card-label{
+  position:relative;z-index:1;height:100%;
+  display:flex;flex-direction:column;
+  align-items:flex-start;justify-content:flex-end;
+  padding:10px 12px;
+}
+.cat-card-emoji{font-size:22px;margin-bottom:3px;}
+.cat-card-name{font-weight:700;font-size:13px;color:#fff;line-height:1;}
+.cat-card-count{font-size:10px;color:rgba(255,255,255,.65);margin-top:2px;}
+
+/* ═══════════════════════════
+   BANNER EMOCIONAL
+═══════════════════════════ */
+.banner-asado{
+  position:relative;overflow:hidden;
+  height:180px;margin:0 0 0 0;
+  display:flex;align-items:center;justify-content:center;
+}
+.banner-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=85');*/
+  background-size:cover;background-position:center 60%;
+}
+.banner-overlay{position:absolute;inset:0;background:rgba(0,0,0,.58);}
+.banner-content{position:relative;z-index:2;text-align:center;padding:0 1.4rem;}
+.banner-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dorado);font-weight:700;margin-bottom:8px;}
+.banner-quote{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:18px;font-weight:700;color:#fff;line-height:1.35;
+}
+.banner-quote span{color:var(--dorado);}
+
+/* ═══════════════════════════
+   PILLS CATEGORÍAS (catálogo)
+═══════════════════════════ */
+.cats-bar{
+  background:var(--blanco);
+  border-bottom:1px solid var(--borde);
+  padding:.65rem 1rem .45rem;
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+  position:sticky;top:58px;z-index:200;
+}
+.cats-bar::-webkit-scrollbar{display:none;}
+.cat-pill{
+  flex-shrink:0;background:transparent;
+  border:1.5px solid var(--gris-claro);border-radius:50px;
+  padding:5px 12px;font-size:11.5px;font-weight:600;
+  color:var(--gris-med);cursor:pointer;white-space:nowrap;
+  transition:all .15s;font-family:'DM Sans',sans-serif;
+}
+.cat-pill.activa{background:var(--negro);border-color:var(--negro);color:#fff;}
+
+/* ═══════════════════════════
+   SECCIÓN ETIQUETA
+═══════════════════════════ */
+.sec-label{
+  font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gris-med);font-weight:700;
+  padding:1.2rem 1.1rem .55rem;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--gris-claro);}
+
+/* ═══════════════════════════
+   GRILLA PRODUCTOS
+═══════════════════════════ */
+.grilla{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:10px;padding:0 1rem 1.1rem;
+}
+.prod-card{
+  background:var(--blanco);border-radius:12px;overflow:hidden;
+  border:1px solid var(--borde);cursor:pointer;
+  box-shadow:var(--sombra);transition:transform .15s,box-shadow .15s;
+}
+.prod-card:active{transform:scale(.96);box-shadow:none;}
+.prod-foto{
+  width:100%;height:114px;background:var(--fondo);
+  display:flex;align-items:center;justify-content:center;
+  font-size:46px;overflow:hidden;position:relative;
+}
+.prod-foto img{width:100%;height:114px;object-fit:cover;display:block;}
+.prod-cat-badge{
+  position:absolute;top:7px;left:7px;
+  background:rgba(0,0,0,.65);color:#fff;
+  font-size:8.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:3px 8px;border-radius:50px;
+}
+.prod-body{padding:9px 10px 12px;}
+.prod-nombre{font-weight:700;font-size:13px;color:var(--negro);line-height:1.3;margin-bottom:2px;}
+.prod-desc-short{font-size:11px;color:var(--gris-med);line-height:1.4;margin-bottom:8px;min-height:28px;}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;}
+.prod-precio{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--rojo);}
+.prod-unidad{font-size:9.5px;color:var(--gris-med);font-weight:500;}
+.prod-add{width:27px;height:27px;border-radius:50%;background:var(--negro);border:none;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+
+/* ═══════════════════════════
+   TESTIMONIOS
+═══════════════════════════ */
+.test-wrap{
+  background:var(--negro);
+  padding:1.4rem 1.1rem;
+}
+.test-title{
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:900;
+  color:#fff;margin-bottom:1rem;
+}
+.test-title span{color:var(--dorado);}
+.test-scroll{
+  display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
+  padding-bottom:4px;
+}
+.test-scroll::-webkit-scrollbar{display:none;}
+.test-card{
+  flex-shrink:0;width:220px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px;
+}
+.test-stars{color:var(--dorado);font-size:13px;letter-spacing:1px;margin-bottom:8px;}
+.test-text{font-size:12.5px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:10px;font-style:italic;}
+.test-autor{font-size:11px;color:rgba(255,255,255,.45);font-weight:600;}
+
+/* ═══════════════════════════
+   SECCIÓN NOSOTROS
+═══════════════════════════ */
+.nosotros-wrap{
+  background:var(--blanco);
+  padding:1.5rem 1.2rem;
+  border-top:3px solid var(--rojo);
+}
+.nosotros-img{
+  width:100%;height:180px;border-radius:12px;overflow:hidden;
+  margin-bottom:1.1rem;position:relative;
+}
+.nosotros-img img{width:100%;height:100%;object-fit:cover;}
+.nosotros-img-fb{
+  width:100%;height:180px;border-radius:12px;
+  background:var(--fondo);display:flex;align-items:center;justify-content:center;font-size:52px;
+  margin-bottom:1.1rem;
+}
+.nosotros-eyebrow{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--dorado);font-weight:700;margin-bottom:6px;
+}
+.nosotros-title{
+  font-family:'Playfair Display',serif;font-size:20px;font-weight:900;
+  color:var(--negro);margin-bottom:8px;line-height:1.15;
+}
+.nosotros-text{font-size:13.5px;color:var(--gris-oscuro);line-height:1.75;}
+.nosotros-items{margin-top:12px;display:flex;flex-direction:column;gap:7px;}
+.nosotros-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gris-oscuro);}
+.nosotros-check{
+  width:22px;height:22px;border-radius:50%;background:var(--rojo-light);
+  color:var(--rojo);display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0;font-weight:700;
+}
+
+/* ═══════════════════════════
+   CTA FINAL
+═══════════════════════════ */
+.cta-final{
+  position:relative;overflow:hidden;
+  padding:2.2rem 1.3rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=85');
+  background-size:cover;background-position:center;
+}
+.cta-overlay{position:absolute;inset:0;background:rgba(10,5,5,.78);}
+.cta-content{position:relative;z-index:2;}
+.cta-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dorado);font-weight:700;margin-bottom:10px;}
+.cta-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:8px;}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:1.4rem;line-height:1.55;}
+.btn-wa-cta{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#25D366;color:#fff;border:none;border-radius:50px;
+  padding:15px 28px;font-size:15px;font-weight:700;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+}
+.btn-wa-cta:active{opacity:.88;}
+
+/* ═══════════════════════════
+   FOOTER
+═══════════════════════════ */
+.footer{
+  background:var(--negro);
+  padding:1.2rem 1.2rem 2rem;
+  text-align:center;
+}
+.footer-brand{
+  font-family:'Playfair Display',serif;font-size:16px;font-weight:900;color:#fff;margin-bottom:3px;
+}
+.footer-slogan{font-size:10px;color:var(--dorado);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-weight:600;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ═══════════════════════════
+   WHATSAPP FLOTANTE
+═══════════════════════════ */
+.wa-float{
+  position:fixed;right:16px;bottom:20px;z-index:500;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;cursor:pointer;
+  box-shadow:0 4px 18px rgba(37,211,102,.45);
+  border:2px solid rgba(255,255,255,.25);
+  transition:transform .15s;
+}
+.wa-float:active{transform:scale(.93);}
+/* Ocultar flotante dentro de las otras pantallas para no duplicar */
+#screen-det .wa-float,
+#screen-cart .wa-float{display:none;}
+
+/* ═══════════════════════════
+   DETALLE
+═══════════════════════════ */
+.det-header{
+  background:var(--negro);
+  padding:.7rem 1.1rem;
+  display:flex;align-items:center;gap:11px;
+  position:sticky;top:0;z-index:300;
+  border-bottom:2px solid var(--rojo);
+}
+.btn-back{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;width:36px;height:36px;
+  color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.btn-back:active{background:rgba(255,255,255,.18);}
+.det-header-title{font-family:'Playfair Display',serif;font-size:15px;color:#fff;font-weight:900;}
+
+.det-foto{
+  width:100%;height:240px;background:var(--fondo);
+  display:flex;align-items:center;justify-content:center;
+  font-size:96px;overflow:hidden;position:relative;
+}
+.det-foto img{width:100%;height:240px;object-fit:cover;display:block;}
+.det-foto-overlay{
+  position:absolute;bottom:0;left:0;right:0;height:80px;
+  background:linear-gradient(to top,rgba(0,0,0,.5),transparent);
+}
+.det-sellos{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+.det-sello{
+  background:rgba(0,0,0,.68);color:#fff;
+  font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:4px 9px;border-radius:50px;
+}
+.det-sello.verde{background:rgba(22,120,50,.85);}
+
+.det-body{padding:1.3rem 1.2rem 2rem;background:var(--blanco);}
+.det-cat{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gris-med);font-weight:700;margin-bottom:4px;}
+.det-nombre{font-family:'Playfair Display',serif;font-size:25px;font-weight:900;line-height:1.1;margin-bottom:9px;color:var(--negro);}
+.det-desc{font-size:13.5px;color:var(--gris-oscuro);line-height:1.8;margin-bottom:1.2rem;}
+.det-divider{height:1px;background:var(--gris-claro);margin-bottom:1.2rem;}
+.det-precio-row{display:flex;align-items:baseline;gap:6px;margin-bottom:1.3rem;}
+.det-precio{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--rojo);}
+.det-unidad{font-size:14px;color:var(--gris-med);}
+
+.qty-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gris-med);margin-bottom:9px;display:block;}
+.qty-row{display:flex;align-items:center;border:1.5px solid var(--gris-claro);border-radius:50px;overflow:hidden;width:fit-content;margin-bottom:1.3rem;background:var(--blanco);}
+.qty-btn{background:var(--fondo);border:none;width:44px;height:44px;font-size:21px;color:var(--negro);font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;}
+.qty-btn:active{background:var(--gris-claro);}
+.qty-val{font-size:15px;font-weight:700;color:var(--negro);width:70px;text-align:center;}
+
+.btn-agregar{
+  width:100%;background:var(--rojo);color:#fff;border:none;border-radius:50px;
+  padding:16px;font-size:15px;font-weight:700;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:background .12s,transform .12s;
+}
+.btn-agregar:active{background:var(--rojo-med);transform:scale(.97);}
+.link-seguir{
+  display:block;text-align:center;margin-top:13px;
+  color:var(--gris-med);font-size:13px;font-weight:500;
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px;
+}
+
+/* ═══════════════════════════
+   CARRITO
+═══════════════════════════ */
+.cart-body{flex:1;padding:1rem 1.1rem;overflow-y:auto;background:var(--fondo);}
+.cart-empty{text-align:center;padding:3.5rem 1rem;color:var(--gris-med);}
+.cart-empty-icon{font-size:50px;display:block;margin-bottom:14px;}
+.cart-empty-title{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--negro);}
+.cart-item{
+  display:flex;align-items:center;gap:11px;
+  background:var(--blanco);border-radius:12px;padding:11px;
+  margin-bottom:8px;border:1px solid var(--borde);
+  box-shadow:0 1px 5px rgba(0,0,0,.05);
+}
+.cart-thumb{
+  width:48px;height:48px;border-radius:9px;background:var(--fondo);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;overflow:hidden;
+}
+.cart-thumb img{width:48px;height:48px;object-fit:cover;border-radius:9px;}
+.cart-info{flex:1;min-width:0;}
+.cart-nombre{font-weight:700;font-size:14px;color:var(--negro);}
+.cart-detalle{font-size:12px;color:var(--gris-med);margin-top:2px;}
+.btn-quitar{
+  background:var(--fondo);border:1px solid var(--gris-claro);border-radius:50%;
+  width:30px;height:30px;color:var(--gris-oscuro);font-size:14px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.btn-quitar:active{background:var(--gris-claro);}
+.cart-footer{
+  background:var(--blanco);border-top:1px solid var(--borde);
+  padding:1.2rem 1.2rem 1.6rem;
+}
+.total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.total-label{font-size:13px;color:var(--gris-med);font-weight:500;}
+.total-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--negro);}
+.total-nota{font-size:10px;color:var(--gris-med);margin-top:2px;}
+.btn-wa{
+  width:100%;background:#25D366;color:#fff;border:none;border-radius:50px;
+  padding:16px;font-size:15px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  font-family:'DM Sans',sans-serif;transition:background .12s,transform .12s;
+}
+.btn-wa:active{background:#1aa854;transform:scale(.97);}
+.link-seguir-carrito{
+  display:block;text-align:center;margin-top:13px;
+  color:var(--gris-med);font-size:13px;font-weight:500;
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px;
+}
+
+/* ═══════════════════════════
+   LOADING & TOAST
+═══════════════════════════ */
+.loading-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:2rem;color:var(--gris-med);}
+.spinner{width:34px;height:34px;border:3px solid var(--gris-claro);border-top-color:var(--rojo);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.toast{
+  position:fixed;bottom:22px;left:50%;
+  transform:translateX(-50%) translateY(16px);
+  background:var(--negro);color:#fff;
+  padding:10px 22px;border-radius:50px;font-size:13px;font-weight:600;
+  opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;z-index:999;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+.main-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════════════════════
+     WHATSAPP FLOTANTE (pantalla principal)
+════════════════════════════════════ -->
+<div class="wa-float" id="wa-float" onclick="abrirWA()">💬</div>
+
+<!-- ════════════════════════════════════
+     PANTALLA PRINCIPAL
+════════════════════════════════════ -->
+<div class="screen active" id="screen-main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div id="hdr-logo-wrap"><div class="logo-fb" id="hdr-logo-fb">🐒</div></div>
+      <div>
+        <div class="header-brand" id="hdr-brand">El Mono</div>
+        <div class="header-slogan" id="hdr-slogan">Calidad que se nota</div>
+      </div>
+    </div>
+    <button class="cart-fab" onclick="goCarrito()">🛒 <span class="cart-badge" id="cart-badge">0</span></button>
+  </div>
+
+  <div class="main-scroll" id="main-scroll">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-logo-row">
+          <div id="hero-logo-wrap"><div class="hero-logo-fb" id="hero-logo-fb">🐒</div></div>
+          <div>
+            <div class="hero-loc">Córdoba · Cortes frescos</div>
+            <div class="hero-name" id="hero-title">Carnicería El Mono</div>
+          </div>
+        </div>
+        <div class="hero-tagline">Los mejores cortes<br>para <span>tu mesa</span></div>
+        <div class="hero-btns">
+          <button class="hero-btn-primary" onclick="scrollAlCatalogo()">Ver productos</button>
+          <button class="hero-btn-wa" onclick="abrirWA()">💬 Pedir por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-item"><span class="trust-icon">🌡️</span><span class="trust-text">Cadena de frío</span></div>
+      <div class="trust-item"><span class="trust-icon">✂️</span><span class="trust-text">Corte a pedido</span></div>
+      <div class="trust-item"><span class="trust-icon">🚚</span><span class="trust-text">Envío a domicilio</span></div>
+      <div class="trust-item"><span class="trust-icon">⭐</span><span class="trust-text">+10 años de calidad</span></div>
+    </div>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <div class="sec-header">
+      <div>
+        <div class="sec-title">¿Por qué <span>elegirnos?</span></div>
+        <div class="sec-sub">Calidad que se siente desde el primer corte</div>
+      </div>
+    </div>
+    <div class="cats-grid" id="porque-grid">
+      <div class="cat-card" style="cursor:default;">
+        <div class="cat-card-bg" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=85');"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-label">
+          <div class="cat-card-emoji">🥩</div>
+          <div class="cat-card-name">Cortes premium</div>
+          <div class="cat-card-count">Selección diaria</div>
+        </div>
+      </div>
+      <div class="cat-card" style="cursor:default;">
+        <div class="cat-card-bg" style="background-image:url('https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=400&q=85');"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-label">
+          <div class="cat-card-emoji">🐔</div>
+          <div class="cat-card-name">Aves frescas</div>
+          <div class="cat-card-count">Entran el mismo día</div>
+        </div>
+      </div>
+      <div class="cat-card" style="cursor:default;">
+        <div class="cat-card-bg" style="background-image:url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=400&q=85');"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-label">
+          <div class="cat-card-emoji">🐷</div>
+          <div class="cat-card-name">Cerdo y elaborados</div>
+          <div class="cat-card-count">Producción propia</div>
+        </div>
+      </div>
+      <div class="cat-card" style="cursor:default;">
+        <div class="cat-card-bg" style="background-image:url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=400&q=85');"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-label">
+          <div class="cat-card-emoji">🔥</div>
+          <div class="cat-card-name">Para la parrilla</div>
+          <div class="cat-card-count">Lo mejor del asado</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER ASADO EMOCIONAL -->
+    <div class="banner-asado">
+      <div class="banner-bg"></div>
+      <div class="banner-overlay"></div>
+      <div class="banner-content">
+        <div class="banner-eyebrow">El sabor importa</div>
+        <div class="banner-quote">El sabor de un gran asado<br>empieza con una <span>gran elección</span></div>
+      </div>
+    </div>
+
+    <!-- CATÁLOGO COMPLETO -->
+    <div class="sec-header" id="catalogo-anchor" style="padding-bottom:.4rem;">
+      <div>
+        <div class="sec-title">Nuestro <span>catálogo</span></div>
+        <div class="sec-sub">Pedí por WhatsApp en minutos</div>
+      </div>
+    </div>
+
+    <!-- PILLS -->
+    <div class="cats-bar" id="cats-bar">
+      <div class="cat-pill activa" data-cat="all" onclick="filtrarCat(this,'all')">Todos</div>
+    </div>
+
+    <div id="productos-wrap">
+      <div class="loading-wrap"><div class="spinner"></div><span>Cargando productos...</span></div>
+    </div>
+
+    <!-- TESTIMONIOS -->
+    <div class="test-wrap">
+      <div class="test-title">Lo que dicen<br><span>nuestros clientes</span></div>
+      <div class="test-scroll">
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-text">"Excelente calidad y atención. La carne llegó fresca y en horario. Nunca más voy a otro lugar."</div>
+          <div class="test-autor">— Marcelo G.</div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-text">"La mejor carne para el asado del domingo. El bife de chorizo es una locura de tierno."</div>
+          <div class="test-autor">— Silvia R.</div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-text">"Muy buenos precios y calidad espectacular. El pedido por WhatsApp es súper fácil."</div>
+          <div class="test-autor">— Diego C.</div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-text">"El matambre que me mandaron era increíble. Se nota que cuidan la cadena de frío."</div>
+          <div class="test-autor">— Laura M.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUESTRA CARNICERÍA -->
+    <div class="nosotros-wrap">
+      <div class="nosotros-img">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=85"
+             alt="El equipo de Carnicería El Mono"
+             loading="lazy"
+             referrerpolicy="no-referrer-when-downgrade"
+             onerror="this.parentElement.innerHTML='<div class=nosotros-img-fb>🏪</div>'">
+      </div>
+      <div class="nosotros-eyebrow">Nuestra carnicería</div>
+      <div class="nosotros-title">Más de 10 años<br>eligiendo lo mejor para vos</div>
+      <div class="nosotros-text">En El Mono trabajamos todos los días para ofrecerte cortes frescos, con higiene y atención personalizada. Cada pieza que entra al local pasa por nuestra selección de calidad.</div>
+      <div class="nosotros-items">
+        <div class="nosotros-item"><span class="nosotros-check">✓</span>Cortes frescos todos los días</div>
+        <div class="nosotros-item"><span class="nosotros-check">✓</span>Atención personalizada por WhatsApp</div>
+        <div class="nosotros-item"><span class="nosotros-check">✓</span>Cadena de frío garantizada</div>
+        <div class="nosotros-item"><span class="nosotros-check">✓</span>Corte a tu medida sin cargo</div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="cta-final">
+      <div class="cta-bg"></div>
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <div class="cta-eyebrow">¿Listo para tu próximo asado?</div>
+        <div class="cta-title">Hacé tu pedido ahora<br>y recibilo en casa</div>
+        <div class="cta-sub">Atención personalizada por WhatsApp.<br>Entrega rápida en Córdoba.</div>
+        <button class="btn-wa-cta" onclick="abrirWA()">💬 Pedir por WhatsApp</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-brand" id="footer-brand">Carnicería El Mono</div>
+      <div class="footer-slogan" id="footer-slogan">Calidad que se nota</div>
+      <div class="footer-copy">Córdoba, Argentina · Pedidos por WhatsApp</div>
+    </div>
+
+  </div><!-- /main-scroll -->
+</div>
+
+<!-- ════════════════════════════════════
+     PANTALLA DETALLE
+════════════════════════════════════ -->
+<div class="screen" id="screen-det">
+  <div class="det-header">
+    <button class="btn-back" onclick="goMain()">&#8592;</button>
+    <div class="det-header-title">Detalle del producto</div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--fondo);">
+    <div class="det-foto" id="det-foto">
+      <div class="det-foto-overlay"></div>
+      <div class="det-sellos">
+        <span class="det-sello verde">✓ Fresco</span>
+        <span class="det-sello">Premium</span>
+      </div>
+    </div>
+    <div class="det-body">
+      <div class="det-cat" id="det-cat"></div>
+      <div class="det-nombre" id="det-nombre"></div>
+      <div class="det-desc" id="det-desc"></div>
+      <div class="det-divider"></div>
+      <div class="det-precio-row">
+        <div class="det-precio" id="det-precio"></div>
+        <div class="det-unidad" id="det-unidad-lbl">/ kg</div>
+      </div>
+      <span class="qty-label" id="qty-label-txt">Cantidad (kg)</span>
+      <div class="qty-row">
+        <button class="qty-btn" onclick="cambiarQty(-.5)">−</button>
+        <div class="qty-val" id="qty-val">0.5 kg</div>
+        <button class="qty-btn" onclick="cambiarQty(.5)">+</button>
+      </div>
+      <button class="btn-agregar" onclick="agregarAlCarrito()">Agregar al carrito</button>
+      <span class="link-seguir" onclick="goMain()">← Seguir comprando</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PANTALLA CARRITO
+════════════════════════════════════ -->
+<div class="screen" id="screen-cart">
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-fb">🐒</div>
+      <div>
+        <div class="header-brand">Carrito</div>
+        <div class="header-slogan">Tu pedido</div>
+      </div>
+    </div>
+    <button class="cart-fab" onclick="goMain()" style="background:rgba(255,255,255,.1);font-size:12px;padding:7px 12px;">← Volver</button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-footer">
+    <div class="total-row">
+      <div>
+        <div class="total-label">Total estimado</div>
+        <div class="total-nota">Precio final según pesaje</div>
+      </div>
+      <div class="total-val" id="cart-total">$0</div>
+    </div>
+    <button class="btn-wa" onclick="enviarWA()"><span style="font-size:19px;">💬</span> Finalizar por WhatsApp</button>
+    <span class="link-seguir-carrito" onclick="goMain()">← Seguir comprando</span>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════
+   CONFIG
+════════════════════════════════════ */
+const PRODUCTOS_URL = 'productos.json';
+
+/* ════════════════════════════════════
+   MAPA DE IMÁGENES — Unsplash (gratis, sin atribución requerida)
+════════════════════════════════════ */
+const IMG_MAP = {
+  1:  'https://t4.ftcdn.net/jpg/00/38/03/31/240_F_38033127_zSJz2iWGtSje8JXS3lL20h1XyENVVkaK.jpg',//'https://images.unsplash.com/photo-1547050605-2f268e1d4d49?auto=format&fit=crop&w=500&q=85',
+  2:  'https://t4.ftcdn.net/jpg/18/39/55/81/240_F_1839558178_1R0XKqs4CGfEOdbxzR9OTCVtnuCrZo0M.jpg',//'https://images.unsplash.com/photo-1547050605-2f268e1d4d49?auto=format&fit=crop&w=500&q=85',
+  3:  'https://t4.ftcdn.net/jpg/07/82/28/93/240_F_782289310_n8Qu3IpdeXD2w8JBCNTFEyEzhZczcnwI.jpg',//'https://images.unsplash.com/photo-1588347818036-c6da0e13da82?auto=format&fit=crop&w=500&q=85',
+  4:  'https://t3.ftcdn.net/jpg/08/17/05/48/240_F_817054845_ioKnIAD4Gage6o5bUfVUhaDsw2kjvovx.jpg',//'https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?auto=format&fit=crop&w=500&q=85',
+  5:  'https://t4.ftcdn.net/jpg/04/15/78/95/240_F_415789531_SbcbogI18e6nQvZB0NC2435zkOTBcO3v.jpg',//'https://images.unsplash.com/photo-1588347818036-c6da0e13da82?auto=format&fit=crop&w=500&q=85',
+  6:  'https://t3.ftcdn.net/jpg/00/24/39/76/240_F_24397670_MoLlX7OKed4EL3ewoYVoxJCpdhBfA0jN.jpg',//'https://images.unsplash.com/photo-1588347793774-b37dc13a9c0e?auto=format&fit=crop&w=500&q=85',
+  7:  'https://t3.ftcdn.net/jpg/00/43/70/24/240_F_43702460_fkMunOp3w4gR7C00LJl4zvx5ydgCLz2q.jpg',//'https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?auto=format&fit=crop&w=500&q=85',
+  8:  'https://t3.ftcdn.net/jpg/01/66/15/14/240_F_166151446_xDu7QvOwMnWu72Jk4R56ZGj2IvOsYXBM.jpg',//'https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?auto=format&fit=crop&w=500&q=85',
+  9:  '',//'https://images.unsplash.com/photo-1588347818036-c6da0e13da82?auto=format&fit=crop&w=500&q=85',
+  10: '',//'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=85',
+  11: '',//'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=85',
+  12: '',//'https://images.unsplash.com/photo-1588347818036-c6da0e13da82?auto=format&fit=crop&w=500&q=85',
+  20: '',//'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=85',
+  21: '',//'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=85',
+  22: '',//'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=85',
+  30: '',//'https://images.unsplash.com/photo-1604503468506-a8da13d11bac?auto=format&fit=crop&w=500&q=85',
+  31: '',//'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=85',
+  32: '',//'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=85',
+  33: '',//'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=500&q=85',
+  40: '',//'https://images.unsplash.com/photo-1604503468506-a8da13d11bac?auto=format&fit=crop&w=500&q=85',
+  41: '',//'https://images.unsplash.com/photo-1588347793774-b37dc13a9c0e?auto=format&fit=crop&w=500&q=85',
+  42: '',//'https://images.unsplash.com/photo-1604503468506-a8da13d11bac?auto=format&fit=crop&w=500&q=85',
+  43: '',//'https://images.unsplash.com/photo-1588347793774-b37dc13a9c0e?auto=format&fit=crop&w=500&q=85',
+  44: '',//'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=85',
+  45: '',//'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=85',
+  46: '',//'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=500&q=85',
+  47: '',//'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=500&q=85',
+  48: '',//'https://images.unsplash.com/photo-1588347793774-b37dc13a9c0e?auto=format&fit=crop&w=500&q=85',
+};
+const IMG_CAT = {
+  vacuno:   '',//'https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?auto=format&fit=crop&w=500&q=85',
+  cerdo:    '',//'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=85',
+  pollo:    '',//'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=500&q=85',
+  achuras:  '',//'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=85',
+  embutidos:'',//'https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=500&q=85',
+  preparado:'',//'https://images.unsplash.com/photo-1588347793774-b37dc13a9c0e?auto=format&fit=crop&w=500&q=85',
+};
+function resolverImg(p){
+  if(p.foto && p.foto.trim()!=='') return p.foto;
+  return IMG_MAP[p.id] || IMG_CAT[p.categoria] || '';
+}
+
+const CAT_LABEL={vacuno:'Vacuno',cerdo:'Cerdo',pollo:'Pollo',achuras:'Achuras',embutidos:'Embutidos',preparado:'Preparados'};
+const CAT_EMOJI={vacuno:'🐄',cerdo:'🐷',pollo:'🍗',achuras:'🔥',embutidos:'🌭',preparado:'🍽️'};
+
+let productos=[],negocio={},carrito=[],catActual='all',prodActual=null,qtyActual=0.5;
+
+/* ════════════════════════════════════
+   DEMO DATA
+════════════════════════════════════ */
+const DATOS_DEMO={
+  negocio:{nombre:"Carnicería El Mono",slogan:"Calidad que se nota",whatsapp:"5493516000000",logo:""},
+  productos:[
+    {id:1,nombre:"Asado de tira",descripcion:"Corte clásico argentino con hueso, ideal para la parrilla. Jugoso y tierno, de primera calidad. Perfecto para asados familiares.",categoria:"vacuno",precio:3200,foto:"",emoji:"🥩",activo:1},
+    {id:2,nombre:"Bife de chorizo",descripcion:"El rey de la parrilla argentina. Corte grueso y tierno con grasa marmolada. Mínimo 2 cm de grosor.",categoria:"vacuno",precio:4800,foto:"",emoji:"🍖",activo:1},
+    {id:3,nombre:"Lomo",descripcion:"El corte más fino y tierno del bovino. Ideal a la plancha o al horno. Sin grasa, textura suave y sabor delicado.",categoria:"vacuno",precio:6200,foto:"",emoji:"🥩",activo:1},
+    {id:4,nombre:"Nalga",descripcion:"Corte magro y versátil, ideal para milanesas, bifes o estofados. Muy rendidor y económico.",categoria:"vacuno",precio:2600,foto:"",emoji:"🥩",activo:1},
+    {id:5,nombre:"Bondiola de cerdo",descripcion:"Corte jugoso y sabroso de la paleta del cerdo. Excelente marinado a la parrilla o al horno con especias.",categoria:"cerdo",precio:2400,foto:"",emoji:"🐷",activo:1},
+    {id:6,nombre:"Pechuga de pollo",descripcion:"Pechuga entera fresca, sin hueso. Carne magra y proteica, ideal para dietas saludables o a la plancha.",categoria:"pollo",precio:1800,foto:"",emoji:"🍗",activo:1},
+    {id:7,nombre:"Muslo y contramuslo",descripcion:"La parte más jugosa del pollo. Perfecta para el horno, estofados o al disco. Mucho sabor.",categoria:"pollo",precio:1400,foto:"",emoji:"🍗",activo:1},
+    {id:8,nombre:"Chorizo criollo",descripcion:"Chorizo artesanal de cerdo condimentado a la manera criolla. Perfecto a la parrilla o en pan.",categoria:"achuras",precio:1600,foto:"",emoji:"🔥",activo:1},
+  ]
+};
+
+/* ════════════════════════════════════
+   INICIALIZACIÓN
+════════════════════════════════════ */
+function cargarDatos(data){
+  negocio=data.negocio||{};
+  productos=(data.productos||[]).filter(function(p){return p.activo==1;});
+  aplicarNegocio();
+  construirCats();
+  renderGrilla();
+}
+function init(){
+  fetch(PRODUCTOS_URL,{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(d){try{cargarDatos(d);}catch(e){console.error(e);}})
+    .catch(function(e){console.warn('Fetch falló, usando demo:',e);cargarDatos(DATOS_DEMO);});
+}
+
+/* ════════════════════════════════════
+   APLICAR NEGOCIO
+════════════════════════════════════ */
+function aplicarNegocio(){
+  if(!negocio.nombre) return;
+  const short=negocio.nombre.replace(/carnicer[íi]a\s*/i,'');
+  document.getElementById('hdr-brand').textContent=short;
+  document.getElementById('hdr-slogan').textContent=negocio.slogan||'';
+  document.getElementById('hero-title').textContent=negocio.nombre;
+  document.getElementById('footer-brand').textContent=negocio.nombre;
+  document.getElementById('footer-slogan').textContent=negocio.slogan||'';
+  document.title=negocio.nombre+' — '+(negocio.slogan||'');
+  if(negocio.logo){
+    var ls='<div class="logo-wrap"><img src="'+negocio.logo+'" alt="logo" onerror="this.parentElement.outerHTML=\'<div class=logo-fb>🐒</div>\'"></div>';
+    var lh='<div class="hero-logo"><img src="'+negocio.logo+'" alt="logo" onerror="this.parentElement.outerHTML=\'<div class=hero-logo-fb>🐒</div>\'"></div>';
+    document.getElementById('hdr-logo-wrap').innerHTML=ls;
+    document.getElementById('hero-logo-wrap').innerHTML=lh;
+    var hf=document.getElementById('hdr-logo-fb');
+    var hef=document.getElementById('hero-logo-fb');
+    if(hf)hf.style.display='none';
+    if(hef)hef.style.display='none';
+  }
+}
+
+/* ════════════════════════════════════
+   CATEGORÍAS
+════════════════════════════════════ */
+function construirCats(){
+  const cats=[...new Set(productos.map(p=>p.categoria))];
+  const bar=document.getElementById('cats-bar');
+  let h='<div class="cat-pill activa" data-cat="all" onclick="filtrarCat(this,\'all\')">Todos</div>';
+  cats.forEach(c=>{
+    h+='<div class="cat-pill" data-cat="'+c+'" onclick="filtrarCat(this,\''+c+'\')">'+
+       (CAT_EMOJI[c]||'')+' '+(CAT_LABEL[c]||c)+'</div>';
+  });
+  bar.innerHTML=h;
+}
+function filtrarCat(el,cat){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('activa'));
+  el.classList.add('activa');
+  catActual=cat;
+  renderGrilla();
+  document.getElementById('catalogo-anchor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════════════════════════════════
+   GRILLA
+════════════════════════════════════ */
+function fotoCardEl(p){
+  const img=resolverImg(p);
+  const em=(p.emoji||CAT_EMOJI[p.categoria]||'🥩').replace(/'/g,"\\'");
+  const cat=escH(CAT_LABEL[p.categoria]||p.categoria);
+  if(img){
+    return '<div class="prod-foto">'+
+      '<img src="'+img+'" alt="'+escH(p.nombre)+'" loading="lazy" referrerpolicy="no-referrer-when-downgrade" '+
+        'onerror="this.parentElement.innerHTML=\'<span style=font-size:46px>'+em+'</span><span class=prod-cat-badge>'+cat+'</span>\'">'+
+      '<span class="prod-cat-badge">'+cat+'</span>'+
+    '</div>';
+  }
+  return '<div class="prod-foto"><span style="font-size:46px;">'+(p.emoji||CAT_EMOJI[p.categoria]||'🥩')+'</span><span class="prod-cat-badge">'+cat+'</span></div>';
+}
+
+function renderGrilla(){
+  const filtrados=catActual==='all'?productos:productos.filter(p=>p.categoria===catActual);
+  const cats=[...new Set(filtrados.map(p=>p.categoria))];
+  const wrap=document.getElementById('productos-wrap');
+  if(!filtrados.length){
+    wrap.innerHTML='<div class="loading-wrap"><span style="font-size:36px;">🔍</span><span>No hay productos en esta categoría.</span></div>';
+    return;
+  }
+  let h='';
+  cats.forEach(cat=>{
+    const items=filtrados.filter(p=>p.categoria===cat);
+    if(catActual==='all'){
+      h+='<div class="sec-label">'+(CAT_EMOJI[cat]||'')+' '+(CAT_LABEL[cat]||cat)+'</div>';
+    }
+    h+='<div class="grilla">';
+    items.forEach(p=>{
+      const unidad=(p.unidad==='unidad')?'/u':'/kg';
+      h+='<div class="prod-card" onclick="goDetalle('+p.id+')">'+
+        fotoCardEl(p)+
+        '<div class="prod-body">'+
+          '<div class="prod-nombre">'+escH(p.nombre)+'</div>'+
+          '<div class="prod-desc-short">'+escH((p.descripcion||'').substring(0,54))+'…</div>'+
+          '<div class="prod-footer">'+
+            '<div><span class="prod-precio">$'+(p.precio||0).toLocaleString('es-AR')+'</span> <span class="prod-unidad">'+unidad+'</span></div>'+
+            '<button class="prod-add" aria-label="Ver producto">+</button>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    });
+    h+='</div>';
+  });
+  wrap.innerHTML=h;
+}
+
+/* ════════════════════════════════════
+   DETALLE
+════════════════════════════════════ */
+function goDetalle(id){
+  prodActual=productos.find(p=>p.id===id);
+  if(!prodActual) return;
+  qtyActual=0.5;
+  const esU=(prodActual.unidad==='unidad');
+  const em=prodActual.emoji||CAT_EMOJI[prodActual.categoria]||'🥩';
+  const img=resolverImg(prodActual);
+  const fotoWrap=document.getElementById('det-foto');
+  let fc='';
+  if(img){
+    fc='<img src="'+img+'" alt="'+escH(prodActual.nombre)+'" referrerpolicy="no-referrer-when-downgrade" '+
+       'onerror="this.parentElement.innerHTML=\'<span style=font-size:96px>'+em.replace(/'/g,"\\'")+'</span>\'">'+
+       '<div class="det-foto-overlay"></div>'+
+       '<div class="det-sellos"><span class="det-sello verde">✓ Fresco</span><span class="det-sello">Premium</span></div>';
+  } else {
+    fc='<span style="font-size:96px;">'+em+'</span>'+
+       '<div class="det-foto-overlay"></div>'+
+       '<div class="det-sellos"><span class="det-sello verde">✓ Fresco</span><span class="det-sello">Premium</span></div>';
+  }
+  fotoWrap.innerHTML=fc;
+  document.getElementById('det-cat').textContent=CAT_LABEL[prodActual.categoria]||prodActual.categoria;
+  document.getElementById('det-nombre').textContent=prodActual.nombre;
+  document.getElementById('det-desc').textContent=prodActual.descripcion||'';
+  document.getElementById('det-precio').textContent='$'+(prodActual.precio||0).toLocaleString('es-AR');
+  document.getElementById('det-unidad-lbl').textContent=esU?'/ unidad':'/ kg';
+  document.getElementById('qty-label-txt').textContent=esU?'Cantidad (unidades)':'Cantidad (kg)';
+  qtyActual=esU?1:0.5;
+  actualizarQtyDisplay(esU);
+  mostrarScreen('screen-det');
+}
+function actualizarQtyDisplay(esU){
+  const l=esU?qtyActual+(qtyActual===1?' unidad':' unidades'):qtyActual.toFixed(1)+' kg';
+  document.getElementById('qty-val').textContent=l;
+}
+function cambiarQty(delta){
+  const esU=(prodActual&&prodActual.unidad==='unidad');
+  const step=esU?1:0.5;
+  const d=esU?(delta>0?1:-1):delta;
+  qtyActual=Math.max(step,Math.round((qtyActual+d)*10)/10);
+  actualizarQtyDisplay(esU);
+}
+function agregarAlCarrito(){
+  if(!prodActual) return;
+  const ex=carrito.find(i=>i.id===prodActual.id);
+  if(ex){ex.qty=Math.round((ex.qty+qtyActual)*10)/10;}
+  else{
+    carrito.push({
+      id:prodActual.id,nombre:prodActual.nombre,precio:prodActual.precio,
+      foto:resolverImg(prodActual),emoji:prodActual.emoji||CAT_EMOJI[prodActual.categoria]||'🥩',
+      qty:qtyActual,unidad:prodActual.unidad||'kg'
+    });
+  }
+  actualizarBadge();
+  toast('✓ '+prodActual.nombre+' agregado');
+  setTimeout(goMain,900);
+}
+
+/* ════════════════════════════════════
+   CARRITO
+════════════════════════════════════ */
+function goCarrito(){renderCarrito();mostrarScreen('screen-cart');}
+function renderCarrito(){
+  const body=document.getElementById('cart-body');
+  if(!carrito.length){
+    body.innerHTML='<div class="cart-empty"><span class="cart-empty-icon">🛒</span><div class="cart-empty-title">Carrito vacío</div><span style="font-size:13px;">Agregá productos para hacer tu pedido</span></div>';
+    document.getElementById('cart-total').textContent='$0';
+    return;
+  }
+  let h='',total=0;
+  carrito.forEach(item=>{
+    const sub=item.precio*item.qty;
+    total+=sub;
+    const esU=item.unidad==='unidad';
+    const ql=esU?item.qty+' u.':item.qty.toFixed(1)+' kg';
+    const thumb=item.foto
+      ?'<img src="'+item.foto+'" alt="'+escH(item.nombre)+'" onerror="this.parentElement.innerHTML=\''+item.emoji+'\'">'
+      :item.emoji;
+    h+='<div class="cart-item">'+
+      '<div class="cart-thumb">'+thumb+'</div>'+
+      '<div class="cart-info">'+
+        '<div class="cart-nombre">'+escH(item.nombre)+'</div>'+
+        '<div class="cart-detalle">'+ql+' · $'+sub.toLocaleString('es-AR')+'</div>'+
+      '</div>'+
+      '<button class="btn-quitar" onclick="quitarItem('+item.id+')">✕</button>'+
+    '</div>';
+  });
+  body.innerHTML=h;
+  document.getElementById('cart-total').textContent='$'+total.toLocaleString('es-AR');
+}
+function quitarItem(id){
+  carrito=carrito.filter(i=>i.id!==id);
+  actualizarBadge();renderCarrito();
+}
+function actualizarBadge(){document.getElementById('cart-badge').textContent=carrito.length;}
+
+/* ════════════════════════════════════
+   WHATSAPP
+════════════════════════════════════ */
+function abrirWA(){
+  const wa=(negocio.whatsapp||'').replace(/\D/g,'');
+  const url='https://wa.me/'+wa;
+  window.open(url,'_blank');
+}
+function enviarWA(){
+  if(!carrito.length){toast('¡Agregá productos primero!');return;}
+  const nombre=negocio.nombre||'Carnicería El Mono';
+  const slogan=negocio.slogan||'Calidad que se nota';
+  let msg='🐒 *PEDIDO — '+nombre+'*\n_'+slogan+'_\n';
+  msg+='━━━━━━━━━━━━━━━━━━━━\n';
+  let total=0;
+  carrito.forEach(i=>{
+    const sub=i.precio*i.qty;total+=sub;
+    const esU=i.unidad==='unidad';
+    const ql=esU?i.qty+' u.':i.qty.toFixed(1)+' kg';
+    msg+='• '+i.emoji+' *'+i.nombre+'*: '+ql+' → $'+sub.toLocaleString('es-AR')+'\n';
+  });
+  msg+='━━━━━━━━━━━━━━━━━━━━\n';
+  msg+='💰 *Total estimado: $'+total.toLocaleString('es-AR')+'*\n\n';
+  msg+='¡Hola! Quisiera hacer este pedido. Por favor confirmame disponibilidad y acordamos la entrega. ¡Muchas gracias! 🙏';
+  const wa=(negocio.whatsapp||'').replace(/\D/g,'');
+  window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+/* ════════════════════════════════════
+   NAVEGACIÓN
+════════════════════════════════════ */
+function mostrarScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  // Ocultar/mostrar flotante WA según pantalla
+  var fl=document.getElementById('wa-float');
+  if(fl) fl.style.display=(id==='screen-main')?'flex':'none';
+}
+function goMain(){mostrarScreen('screen-main');}
+function scrollAlCatalogo(){
+  document.getElementById('catalogo-anchor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════════════════════════════════
+   HELPERS
+════════════════════════════════════ */
+function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+let toastTimer;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+init();
+</script>
+</body>
+</html>
